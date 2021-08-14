@@ -1,0 +1,25 @@
+.root {
+  margin: 0 auto;
+  font-family: "Inter", Arial, sans-serif;
+  background-color: #000;
+  color: white;
+  max-width: 1280px;
+}
+
+@media screen and (max-width: 1024px) {
+  .root {
+    max-width: 1024px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .root {
+    max-width: 768px;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .root {
+    max-width: 320px;
+  }
+}

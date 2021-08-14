@@ -1,0 +1,7 @@
+.element__like{
+
+  min-width: 22px;
+  min-height: 19px;
+  background-image: url(/images/heart.svg);
+  background-repeat: no-repeat;
+}

@@ -1,0 +1,13 @@
+.element{
+  border-radius: 10px;
+  background-color: white;
+  margin: 0;
+}
+
+.element__caption{
+  padding: 25px 20px 31px 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
