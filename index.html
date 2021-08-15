@@ -25,7 +25,9 @@
             </button>
             <h2 class="profile__about">Исследователь океана</h2>
           </div>
-          <button class="button profile__add-button">&#10133;</button>
+          <button class="button profile__add-button">
+            <img src="./images/plus.png" alt="Добавить">
+          </button>
         </section>
         <!-- elements--->
         <section class="elements root__elements">
@@ -77,6 +79,23 @@
       <footer class="footer root__footer">
         <p class="footer__copyright">© 2021. Алексей Баев</p>
       </footer>
+    </div>
+    <div class="popup popup__is-opened">
+      <div class="popup__content">
+        <button type="button" class="popup__close"></button>
+        <h3 class="popup__title">Редактировать профиль</h3>
+        <form class="popup__form">
+          <div class="popup__block">
+            <input type="text" class="popup__field popup__name" name="txtName" value="Жак-Ив Кусто">
+            <div class="popup__line"></div>
+          </div>
+          <div class="popup__block">
+            <input type="text" class="popup__field popup__about" name="txtAbout" value="Исследователь океана">
+            <div class="popup__line"></div>
+          </div>
+          <button type="submit" class="button popup__button">Сохранить</button>
+        </form>
+      </div>
     </div>
   </body>
 </html>

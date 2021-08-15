@@ -1,7 +1,16 @@
 .element__like{
-
   min-width: 22px;
   min-height: 19px;
   background-image: url(/images/heart.svg);
   background-repeat: no-repeat;
+  opacity: 1;
+}
+
+.element__like:hover{
+  opacity: 0.5;
+}
+
+.element__like_image_black{
+  background-image: url(/images/heart_black.svg);
+  opacity: 1;
 }
