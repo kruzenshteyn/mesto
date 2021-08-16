@@ -1,7 +1,17 @@
 .profile__info{
-  display: flex;
-  flex-wrap: wrap;
-  max-width: 336px;
+  display: grid;
+  grid-template-columns: 1fr 24px;
+  gap: 16px 18px;
   align-items: center;
   margin-left: 30px;
+  max-width: 65%;
+}
+
+@media screen and (max-width:768px){
+  .profile__info{
+    margin-top: 22.25px;
+    margin-left: 24px;
+    max-width: 100%;
+    gap: 14px 10px;
+  }
 }

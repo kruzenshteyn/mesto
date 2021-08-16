@@ -9,5 +9,16 @@
   font-size: 18px;
   line-height: 1.2;
   text-align: center;
-  color: #ffffff;
+  box-sizing: border-box;
+}
+
+.popup__button:hover{
+  opacity: 0.8;
+}
+
+@media screen and (max-width:500px){
+  .popup__button{
+    font-size: 14px;
+    margin-top: 45px;
+  }
 }

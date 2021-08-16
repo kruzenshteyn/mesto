@@ -5,14 +5,15 @@
     <link rel="stylesheet" href="./pages/index.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Путешествия по России</title>
+    <script type="text/javascript" src="./script.js" defer></script>
   </head>
   <body class="root">
+    <!--Header-->
+    <header class="header root__header">
+      <div class="header__logo"></div>
+      <div class="header__line"></div>
+    </header>
     <div class="root__container">
-      <!--Header-->
-      <header class="header root__header">
-        <div class="header__logo"></div>
-        <div class="header__line"></div>
-      </header>
       <!--main content-->
       <main class="content">
         <!--Profile-->
@@ -23,7 +24,7 @@
             <button class="button profile__edit-button">
               <img src="./images/edit_btn.png" alt="Ручка">
             </button>
-            <h2 class="profile__about">Исследователь океана</h2>
+            <p class="profile__about">Исследователь океана</p>
           </div>
           <button class="button profile__add-button">
             <img src="./images/plus.png" alt="Добавить">
@@ -32,37 +33,37 @@
         <!-- elements--->
         <section class="elements root__elements">
           <figure class="element">
-            <img class="element__image" src="./images/karachaevsk.jpg" alt="Карачаево-Черкессия">
+            <img class="element__image" src="./images/karachaevsk.jpg" alt="Карачаевск">
             <figcaption class="element__caption">
-              <h2 class="element__title">Карачаево-Черкессия</h2>
+              <h2 class="element__title">Карачаевск</h2>
               <div class="element__like"></div>
             </figcaption>
           </figure>
           <figure class="element">
-            <img class="element__image" src="./images/karachaevsk.jpg" alt="Карачаево-Черкессия">
+            <img class="element__image" src="./images/elbrus.jpg" alt="Гора Эльбрус">
             <figcaption class="element__caption">
-              <h2 class="element__title">Карачаево-Черкессия</h2>
+              <h2 class="element__title">Гора Эльбрус</h2>
               <div class="element__like"></div>
             </figcaption>
           </figure>
           <figure class="element">
-            <img class="element__image" src="./images/karachaevsk.jpg" alt="Карачаево-Черкессия">
+            <img class="element__image" src="./images/dombay.jpg" alt="Домбай">
             <figcaption class="element__caption">
-              <h2 class="element__title">Карачаево-Черкессия</h2>
+              <h2 class="element__title">Домбай</h2>
               <div class="element__like"></div>
             </figcaption>
           </figure>
           <figure class="element">
-            <img class="element__image" src="./images/karachaevsk.jpg" alt="Карачаево-Черкессия">
+            <img class="element__image" src="./images/elbrus.jpg" alt="Гора Эльбрус">
             <figcaption class="element__caption">
-              <h2 class="element__title">Карачаево-Черкессия</h2>
+              <h2 class="element__title">Гора Эльбрус</h2>
               <div class="element__like"></div>
             </figcaption>
           </figure>
           <figure class="element">
-            <img class="element__image" src="./images/karachaevsk.jpg" alt="Карачаево-Черкессия">
+            <img class="element__image" src="./images/dombay.jpg" alt="Домбай">
             <figcaption class="element__caption">
-              <h2 class="element__title">Карачаево-Черкессия</h2>
+              <h2 class="element__title">Домбай</h2>
               <div class="element__like"></div>
             </figcaption>
           </figure>
@@ -80,17 +81,17 @@
         <p class="footer__copyright">© 2021. Алексей Баев</p>
       </footer>
     </div>
-    <div class="popup popup__is-opened">
+    <div class="popup">
       <div class="popup__content">
-        <button type="button" class="popup__close"></button>
+        <button type="button" class="button popup__close"></button>
         <h3 class="popup__title">Редактировать профиль</h3>
         <form class="popup__form">
           <div class="popup__block">
-            <input type="text" class="popup__field popup__name" name="txtName" value="Жак-Ив Кусто">
+            <input type="text" class="popup__field popup__name" name="txtName" placeholder="Жак-Ив Кусто">
             <div class="popup__line"></div>
           </div>
           <div class="popup__block">
-            <input type="text" class="popup__field popup__about" name="txtAbout" value="Исследователь океана">
+            <input type="text" class="popup__field popup__about" name="txtAbout" placeholder="Исследователь океана">
             <div class="popup__line"></div>
           </div>
           <button type="submit" class="button popup__button">Сохранить</button>

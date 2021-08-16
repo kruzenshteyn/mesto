@@ -3,14 +3,20 @@
   min-height: 32px;
   background-image: url(/images/Close_Icon.png);
   background-repeat: no-repeat;
+  background-size: 100%;
   border: none;
   background-color: unset;
   position: absolute;
   top: -40px;
   right: -40px;
-  opacity: 1;
+  object-fit: fill;
 }
 
-.popup__close:hover {
-  opacity: 0.6;
+@media screen and (max-width: 550px) {
+  .popup__close {
+    min-width: 20px;
+    min-height: 20px;
+    top: -36px;
+    right: 0;
+  }
 }

@@ -4,6 +4,7 @@
   border: 1px solid white;
   box-sizing: border-box;
   opacity: 1;
+  cursor: pointer;
 }
 
 .button:hover{

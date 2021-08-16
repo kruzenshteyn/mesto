@@ -1,0 +1,7 @@
+.element__like_background_black{
+  background-image: url(/images/heart_black.svg);
+}
+
+.element__like_background_black:hover{
+  opacity: 1;
+}
