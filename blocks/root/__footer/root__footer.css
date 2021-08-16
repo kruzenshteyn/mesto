@@ -1,9 +1,9 @@
-.root__footer{
+.root__footer {
   margin-top: 67px;
 }
 
-@media screen and (max-width:320px){
-  .root__footer{
+@media screen and (max-width: 320px) {
+  .root__footer {
     margin-top: 48px;
   }
 }

@@ -1,10 +1,10 @@
-.root__container{
+.root__container {
   max-width: 880px;
   margin: 0 auto;
 }
 
-@media screen and (max-width:1024px){
-  .root__container{
+@media screen and (max-width: 1024px) {
+  .root__container {
     max-width: 88.125%;
   }
 }

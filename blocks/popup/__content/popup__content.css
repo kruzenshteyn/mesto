@@ -1,4 +1,4 @@
-.popup__content{
+.popup__content {
   display: flex;
   flex-direction: column;
   background-color: white;
@@ -11,8 +11,8 @@
   box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.15);
 }
 
-@media screen and (max-width:500px){
-  .popup__content{
+@media screen and (max-width: 500px) {
+  .popup__content {
     font-size: 14px;
     max-width: 282px;
     padding: 25px 22px;

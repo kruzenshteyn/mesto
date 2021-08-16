@@ -1,9 +1,9 @@
-.root__elements{
+.root__elements {
   margin-top: 51px;
 }
 
-@media screen and (max-width:320px){
-  .root__elements{
+@media screen and (max-width: 320px) {
+  .root__elements {
     margin-top: 36px;
   }
 }

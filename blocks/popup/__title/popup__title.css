@@ -1,4 +1,4 @@
-.popup__title{
+.popup__title {
   /* Редактировать профиль */
   font-family: Inter;
   font-style: normal;
@@ -9,8 +9,8 @@
   margin: 0;
 }
 
-@media screen and (max-width:500px){
-  .popup__title{
+@media screen and (max-width: 500px) {
+  .popup__title {
     font-size: 18px;
   }
 }

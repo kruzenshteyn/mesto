@@ -7,7 +7,6 @@ let textProfileAbout = document.querySelector('.profile__about');
 let btnPopupSubmit = document.querySelector('.popup__button');
 let popupName = document.querySelector('.popup__name');
 let popupAbout = document.querySelector('.popup__about');
-let form = document.querySelector('.popup__form');
 
 function togglePopup(){
   popup.classList.toggle('popup__is-opened');
@@ -25,7 +24,7 @@ btnOpenPopup.addEventListener('click', togglePopup);
 btnClosePopup.addEventListener('click', togglePopup);
 btnPopupSubmit.addEventListener('click', changeProfileInfo);
 
-form.addEventListener(
+document.querySelector('.popup__form').addEventListener(
   'submit',
   function(event){
     event.preventDefault();
