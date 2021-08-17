@@ -1,14 +1,15 @@
 .popup__button {
   border-radius: 2px;
   width: 100%;
-  min-height: 46px;
-  margin-top: 48px;
+  min-height: 50px;
+  margin-top: 20px;
   font-style: normal;
   font-weight: normal;
   font-size: 18px;
   line-height: 1.2;
   text-align: center;
-  box-sizing: border-box;
+  border: none;
+  padding: 0;
 }
 
 .popup__button:hover {
@@ -18,6 +19,7 @@
 @media screen and (max-width: 500px) {
   .popup__button {
     font-size: 14px;
-    margin-top: 45px;
+    margin-top: 18px;
+    min-height: 44px;
   }
 }

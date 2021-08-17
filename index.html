@@ -8,8 +8,7 @@
   </head>
   <body class="root">
     <header class="header">
-      <div class="header__logo"></div>
-      <div class="header__line"></div>
+      <img class="header__logo" src="./images/logo.svg" alt="Логотип" />
     </header>
     <div class="root__container">
       <!--main content-->
@@ -18,17 +17,21 @@
           <img
             class="profile__avatar"
             src="./images/kusto.jpg"
-            alt="Жак-Ив Кусто"
+            alt="Аватар"
           />
           <div class="profile__info">
             <h1 class="profile__name">Жак-Ив Кусто</h1>
-            <button class="button profile__edit-button">
-              <img src="./images/edit_btn.png" alt="Ручка" />
+            <button type="button" class="button profile__edit-button">
+              <img src="./images/edit_btn.svg" alt="Ручка" />
             </button>
             <p class="profile__about">Исследователь океана</p>
           </div>
-          <button class="button profile__add-button">
-            <img src="./images/plus.png" alt="Добавить" />
+          <button type="button" class="button profile__add-button">
+            <img
+              src="./images/plus.svg"
+              class="profile__add-image"
+              alt="Добавить"
+            />
           </button>
         </section>
         <section class="elements root__elements">
@@ -40,7 +43,7 @@
             />
             <figcaption class="element__caption">
               <h2 class="element__title">Карачаевск</h2>
-              <div class="element__like"></div>
+              <button type="button" class="element__like"></button>
             </figcaption>
           </figure>
           <figure class="element">
@@ -51,7 +54,7 @@
             />
             <figcaption class="element__caption">
               <h2 class="element__title">Гора Эльбрус</h2>
-              <div class="element__like"></div>
+              <button type="button" class="element__like"></button>
             </figcaption>
           </figure>
           <figure class="element">
@@ -62,7 +65,7 @@
             />
             <figcaption class="element__caption">
               <h2 class="element__title">Домбай</h2>
-              <div class="element__like"></div>
+              <button type="button" class="element__like"></button>
             </figcaption>
           </figure>
           <figure class="element">
@@ -73,7 +76,7 @@
             />
             <figcaption class="element__caption">
               <h2 class="element__title">Гора Эльбрус</h2>
-              <div class="element__like"></div>
+              <button type="button" class="element__like"></button>
             </figcaption>
           </figure>
           <figure class="element">
@@ -84,7 +87,7 @@
             />
             <figcaption class="element__caption">
               <h2 class="element__title">Домбай</h2>
-              <div class="element__like"></div>
+              <button type="button" class="element__like"></button>
             </figcaption>
           </figure>
           <figure class="element">
@@ -95,38 +98,36 @@
             />
             <figcaption class="element__caption">
               <h2 class="element__title">Карачаево-Черкессия</h2>
-              <div class="element__like"></div>
+              <button type="button" class="element__like"></button>
             </figcaption>
           </figure>
         </section>
       </main>
       <footer class="footer root__footer">
-        <p class="footer__copyright">© 2021. Алексей Баев</p>
+        <p class="footer__copyright">&copy; 2021. Алексей Баев</p>
       </footer>
     </div>
     <div class="popup">
       <div class="popup__content">
         <button type="button" class="button popup__close"></button>
         <h3 class="popup__title">Редактировать профиль</h3>
-        <form class="popup__form">
-          <div class="popup__block">
-            <input
-              type="text"
-              class="popup__field popup__name"
-              name="txtName"
-              placeholder="Жак-Ив Кусто"
-            />
-            <div class="popup__line"></div>
-          </div>
-          <div class="popup__block">
-            <input
-              type="text"
-              class="popup__field popup__about"
-              name="txtAbout"
-              placeholder="Исследователь океана"
-            />
-            <div class="popup__line"></div>
-          </div>
+        <form class="popup__form" name="formPopup">
+          <input
+            type="text"
+            class="popup__field"
+            id="popupFieldName"
+            name="txtName"
+            placeholder="Имя"
+            required
+          />
+          <input
+            type="text"
+            class="popup__field"
+            id="popupFieldAbout"
+            name="txtAbout"
+            placeholder="О себе"
+            required
+          />
           <button type="submit" class="button popup__button">Сохранить</button>
         </form>
       </div>
