@@ -4,7 +4,7 @@ let popup = document.querySelector('.popup');
 let btnClosePopup = document.querySelector('.popup__close');
 let textProfileName = document.querySelector('.profile__name');
 let textProfileAbout = document.querySelector('.profile__about');
-let frmPopupSubmit = document.querySelector('.popup');
+let frmPopupSubmit = document.querySelector('.popup__form');
 let popupContent = document.querySelector('.popup__content');
 let popupName = document.getElementById('popupFieldName');
 let popupAbout = document.getElementById('popupFieldAbout');
@@ -18,8 +18,9 @@ function togglePopup(){
   popup.classList.toggle('popup_is-opened');
 };
 
-function changeProfileInfo()
+function changeProfileInfo(event)
 {
+  event.preventDefault();
   textProfileName.textContent = popupName.value;
   textProfileAbout.textContent = popupAbout.value;
   togglePopup();
@@ -29,18 +30,4 @@ function changeProfileInfo()
 btnOpenPopup.addEventListener('click', togglePopup);
 btnClosePopup.addEventListener('click', togglePopup);
 
-frmPopupSubmit.addEventListener('submit', (event)=>{
-  //Отключаем событие по-умолчанию чтобы не обновлялась страница
-  event.preventDefault();
-  //Меняем значения на странице
-  changeProfileInfo();
-});
-
-popupContent.addEventListener('click', (event)=>
-  event.stopPropagation()
-);
-
-
-
-
-
+frmPopupSubmit.addEventListener('submit', changeProfileInfo);
