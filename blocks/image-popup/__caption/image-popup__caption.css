@@ -1,0 +1,9 @@
+.image-popup__caption{
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 1.25;
+  color: #FFFFFF;
+  align-self: flex-end;
+  margin-top: 10px;
+}

@@ -1,19 +1,7 @@
 .elements {
   display: grid;
-  grid-template-columns: repeat(3, 32.04%);
+  grid-template-columns: repeat(auto-fit, 282px);
   gap: 20px 1.93%;
   max-width: 100%;
-}
-
-@media screen and (max-width: 768px) {
-  .elements {
-    grid-template-columns: repeat(2, 49%);
-    column-gap: 2%;
-  }
-}
-
-@media screen and (max-width: 500px) {
-  .elements {
-    grid-template-columns: 100%;
-  }
+  justify-content: center;
 }

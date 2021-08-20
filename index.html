@@ -42,78 +42,13 @@
           </button>
         </section>
         <section class="elements root__elements">
-          <figure class="element">
-            <img
-              class="element__image"
-              src="./images/karachaevsk.jpg"
-              alt="Карачаевск"
-            />
-            <figcaption class="element__caption">
-              <h2 class="element__title">Карачаевск</h2>
-              <button type="button" class="element__like"></button>
-            </figcaption>
-          </figure>
-          <figure class="element">
-            <img
-              class="element__image"
-              src="./images/elbrus.jpg"
-              alt="Гора Эльбрус"
-            />
-            <figcaption class="element__caption">
-              <h2 class="element__title">Гора Эльбрус</h2>
-              <button type="button" class="element__like"></button>
-            </figcaption>
-          </figure>
-          <figure class="element">
-            <img
-              class="element__image"
-              src="./images/dombay.jpg"
-              alt="Домбай"
-            />
-            <figcaption class="element__caption">
-              <h2 class="element__title">Домбай</h2>
-              <button type="button" class="element__like"></button>
-            </figcaption>
-          </figure>
-          <figure class="element">
-            <img
-              class="element__image"
-              src="./images/elbrus.jpg"
-              alt="Гора Эльбрус"
-            />
-            <figcaption class="element__caption">
-              <h2 class="element__title">Гора Эльбрус</h2>
-              <button type="button" class="element__like"></button>
-            </figcaption>
-          </figure>
-          <figure class="element">
-            <img
-              class="element__image"
-              src="./images/dombay.jpg"
-              alt="Домбай"
-            />
-            <figcaption class="element__caption">
-              <h2 class="element__title">Домбай</h2>
-              <button type="button" class="element__like"></button>
-            </figcaption>
-          </figure>
-          <figure class="element">
-            <img
-              class="element__image"
-              src="./images/karachaevsk.jpg"
-              alt="Карачаево-Черкессия"
-            />
-            <figcaption class="element__caption">
-              <h2 class="element__title">Карачаево-Черкессия</h2>
-              <button type="button" class="element__like"></button>
-            </figcaption>
-          </figure>
         </section>
       </main>
       <footer class="footer root__footer">
         <p class="footer__copyright">&copy; 2021. Алексей Баев</p>
       </footer>
     </div>
+    <!--popup-->
     <div class="popup">
       <div class="popup__content">
         <button type="button" class="button popup__close"></button>
@@ -122,7 +57,7 @@
           <input
             type="text"
             class="popup__field"
-            id="popupFieldName"
+            id="popupFieldFirst"
             name="txtName"
             placeholder="Имя"
             required
@@ -130,7 +65,7 @@
           <input
             type="text"
             class="popup__field"
-            id="popupFieldAbout"
+            id="popupFieldSecond"
             name="txtAbout"
             placeholder="О себе"
             required
@@ -138,6 +73,20 @@
           <button type="submit" class="button popup__button">Сохранить</button>
         </form>
       </div>
+    </div>
+    <!--popup_is-opened-->
+    <div class="popup image-popup ">
+      <figure class="image-popup__container">
+        <button type="button" id="image-popup__close" class="button popup__close"></button>
+        <img
+          class="image-popup__image"
+          src="https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg"
+          alt="Гора Эльбрус"
+        />
+        <figcaption class="image-popup__caption">
+          Гора Эльбрус
+        </figcaption>
+      </figure>
     </div>
     <script src="./scripts/script.js" defer></script>
   </body>
