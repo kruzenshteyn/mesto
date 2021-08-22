@@ -67,7 +67,11 @@ function openPopupProfile(){
   if(!popup.classList.contains('popup_is-opened')){
     popupFieldFirst.value = textProfileName.textContent
     popupFieldSecond.value = textProfileAbout.textContent;
+    popupFieldFirst.setAttribute('placeholder', 'Имя');
+    popupFieldSecond.setAttribute('placeholder', 'О себе');
     btnPopupSubmit.textContent = 'Сохранить';
+    //Изменение ключевых надписей на форме
+    popupTitle.textContent = 'Редактировать профиль';
   }
   popup.classList.add('popup_is-opened');
   frmPopupSubmit.addEventListener('submit', changeProfileInfo);
@@ -90,23 +94,27 @@ function getRandomInt(max) {
 
 function openPopupPlace(){
   if(!popup.classList.contains('popup_is-opened')){
+    //Изменение ключевых надписей на форме
     popupTitle.textContent = 'Новое место';
     popupFieldFirst.setAttribute('placeholder', 'Название');
     popupFieldSecond.setAttribute('placeholder', 'Ссылка на картинку');
-
+    popupFieldFirst.value = "";
+    popupFieldSecond.value = "";
     frmPopupSubmit.addEventListener('submit', addNewPlace);
     btnPopupSubmit.textContent = 'Создать';
 
     //Temp
-    let idx = getRandomInt(6);
-    popupFieldFirst.value = initialCards[idx].name;
-    popupFieldSecond.value = initialCards[idx].link;
+    //let idx = getRandomInt(6);
+    //popupFieldFirst.value = initialCards[idx].name;
+    //popupFieldSecond.value = initialCards[idx].link;
   }
   popup.classList.add('popup_is-opened');
 }
 
 function closePopup(){
   popup.classList.remove('popup_is-opened');
+  frmPopupSubmit.removeEventListener('submit', addNewPlace);
+  frmPopupSubmit.removeEventListener('submit', changeProfileInfo);
 }
 
 function closeImagePopup(){
@@ -116,7 +124,6 @@ function closeImagePopup(){
 function addNewPlace(event){
   event.preventDefault();
   AddElement(popupFieldSecond.value, popupFieldFirst.value)
-  frmPopupSubmit.removeEventListener('submit', addNewPlace);
   closePopup();
 }
 
@@ -125,7 +132,6 @@ function changeProfileInfo(event)
   event.preventDefault();
   textProfileName.textContent = popupFieldFirst.value;
   textProfileAbout.textContent = popupFieldSecond.value;
-  frmPopupSubmit.removeEventListener('submit', changeProfileInfo);
   closePopup();
 }
 
@@ -134,8 +140,6 @@ btnOpenPopup.addEventListener('click', openPopupProfile);
 btnAddElement.addEventListener('click', openPopupPlace);
 btnClosePopup.addEventListener('click', closePopup);
 btnClosePopupImage.addEventListener('click', closeImagePopup);
-
-
 
 //Add element
 function AddElement(picLink, title){

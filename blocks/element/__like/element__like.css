@@ -4,9 +4,11 @@
   background-color: white;
   background-image: url("./../../../images/heart.svg");
   background-repeat: no-repeat;
-  opacity: 1;
+
   cursor: pointer;
   border: none;
+  opacity: 1;
+  transition: 0.5s linear;
 }
 
 .element__like:hover {
