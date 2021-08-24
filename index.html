@@ -8,28 +8,17 @@
   </head>
   <body class="root">
     <header class="header">
-      <img
-        class="header__logo"
-        src="./images/logo.svg"
-        alt="Логотип"
-      />
+      <img class="header__logo" src="./images/logo.svg" alt="Логотип" />
     </header>
     <div class="root__container">
       <!--main content-->
       <main class="content">
         <section class="profile root__profile">
-          <img
-            class="profile__avatar"
-            src="./images/kusto.jpg"
-            alt="Аватар"
-          />
+          <img class="profile__avatar" src="./images/kusto.jpg" alt="Аватар" />
           <div class="profile__info">
             <h1 class="profile__name">Жак-Ив Кусто</h1>
             <button type="button" class="button profile__edit-button">
-              <img
-                src="./images/edit_btn.svg"
-                alt="Ручка"
-              />
+              <img src="./images/edit_btn.svg" alt="Ручка" />
             </button>
             <p class="profile__about">Исследователь океана</p>
           </div>
@@ -41,53 +30,67 @@
             />
           </button>
         </section>
-        <section class="elements root__elements">
-        </section>
+        <section class="elements root__elements"></section>
       </main>
       <footer class="footer root__footer">
         <p class="footer__copyright">&copy; 2021. Алексей Баев</p>
       </footer>
     </div>
-    <!--popup-->
-    <div class="popup">
-      <div class="popup__content">
-        <button type="button" class="button popup__close"></button>
-        <h3 class="popup__title">Редактировать профиль</h3>
-        <form class="popup__form" name="formPopup">
-          <input
-            type="text"
-            class="popup__field"
-            id="popupFieldFirst"
-            name="txtName"
-            placeholder="Имя"
-            required
-          />
-          <input
-            type="text"
-            class="popup__field"
-            id="popupFieldSecond"
-            name="txtAbout"
-            placeholder="О себе"
-            required
-          />
-          <button type="submit" class="button popup__button">Сохранить</button>
-        </form>
-      </div>
-    </div>
-    <!--popup_is-opened-->
-    <div class="popup image-popup ">
-      <figure class="image-popup__container">
-        <button type="button" id="image-popup__close" class="button popup__close"></button>
+    <!--card-->
+    <template id="#element">
+      <figure class="element">
+        <button type="button" class="button element__remove"></button>
         <img
-          class="image-popup__image"
-          src="https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg"
-          alt="Гора Эльбрус"
+          class="element__image"
+          src=''
+          alt=''
+          id = '#element__image'
         />
-        <figcaption class="image-popup__caption">
-          Гора Эльбрус
+        <figcaption class="element__caption">
+          <h2 class="element__title"></h2>
+          <button type="button" class="element__like"></button>
         </figcaption>
       </figure>
-    </div>
+    </template>
+    <!--popup-->
+    <template id="#popup">
+      <div class="popup">
+        <div class="popup__content">
+          <button type="button" class="button popup__close"></button>
+          <h3 class="popup__title"></h3>
+          <form class="popup__form" name="formPopup">
+            <input
+              type="text"
+              class="popup__field"
+              id="popupFieldFirst"
+              placeholder=""
+              required
+            />
+            <input
+              type="text"
+              class="popup__field"
+              id="popupFieldSecond"
+              placeholder=""
+              required
+            />
+            <button type="submit" class="button popup__button"></button>
+          </form>
+        </div>
+      </div>
+    </template>
+    <!--image-popup-->
+    <template id="#image-popup">
+      <div class="popup image-popup">
+        <figure class="image-popup__container">
+          <button
+            type="button"
+            class="button popup__close"
+          ></button>
+          <img class="image-popup__image" src="" alt="" />
+          <figcaption class="image-popup__caption"></figcaption>
+        </figure>
+      </div>
+    </template>
     <script src="./scripts/script.js" defer></script>
   </body>
 </html>

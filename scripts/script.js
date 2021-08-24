@@ -1,22 +1,9 @@
-//Popup fields
-let btnOpenPopup = document.querySelector('.profile__edit-button');
-let popup = document.querySelector('.popup');
-let btnClosePopup = document.querySelector('.popup__close');
-let textProfileName = document.querySelector('.profile__name');
-let textProfileAbout = document.querySelector('.profile__about');
-let frmPopupSubmit = document.querySelector('.popup__form');
-let popupContent = document.querySelector('.popup__content');
-let popupFieldFirst = document.getElementById('popupFieldFirst');
-let popupFieldSecond = document.getElementById('popupFieldSecond');
-let btnAddElement = document.querySelector('.profile__add-button');
+//Buttons
+const btnEditProfile = document.querySelector('.profile__edit-button');
+const btnAddElement = document.querySelector('.profile__add-button');
 
-let popupTitle = document.querySelector('.popup__title');
-let btnPopupSubmit = document.querySelector('.popup__button');
-
-let elements = document.querySelector('.elements');
-
-let popupImage = document.querySelector('.image-popup');
-let btnClosePopupImage = document.getElementById("image-popup__close");
+//Main container
+const root = document.querySelector('.root');
 
 const initialCards = [
   {
@@ -45,141 +32,136 @@ const initialCards = [
   }
 ];
 
-//Load default places
+//Загрузка изображений из массива
 function loadDefaultPlaces(){
   initialCards.forEach(function(item, i , initialCards){
     AddElement(item.link, item.name);
   });
 }
-
 loadDefaultPlaces();
 
+//Button Event Listeners
+btnEditProfile.addEventListener('click', openPopup);
+btnAddElement.addEventListener('click', openPopup);
+
 //Popup Methods
-function togglePopup(){
-  if(!popup.classList.contains('popup_is-opened')){
-    popupFieldFirst.value = textProfileName.textContent
-    popupFieldSecond.value = textProfileAbout.textContent;
-  }
-  popup.classList.toggle('popup_is-opened');
-};
-
-function openPopupProfile(){
-  if(!popup.classList.contains('popup_is-opened')){
-    popupFieldFirst.value = textProfileName.textContent
-    popupFieldSecond.value = textProfileAbout.textContent;
-    popupFieldFirst.setAttribute('placeholder', 'Имя');
-    popupFieldSecond.setAttribute('placeholder', 'О себе');
-    btnPopupSubmit.textContent = 'Сохранить';
-    //Изменение ключевых надписей на форме
-    popupTitle.textContent = 'Редактировать профиль';
-  }
-  popup.classList.add('popup_is-opened');
-  frmPopupSubmit.addEventListener('submit', changeProfileInfo);
-}
-
-let popupImageLink = document.querySelector('.image-popup__image');
-let popupImageCaption = document.querySelector('.image-popup__caption');
-
-function openImagePopup(link, name){
-  if(!popupImage.classList.contains('popup_is-opened')){
-    popupImageLink.setAttribute('src', link);
-    popupImageCaption.textContent = name;
-  }
-  popupImage.classList.add('popup_is-opened');
-}
-
-function getRandomInt(max) {
-  return Math.floor(Math.random() * max);
-}
-
-function openPopupPlace(){
-  if(!popup.classList.contains('popup_is-opened')){
-    //Изменение ключевых надписей на форме
-    popupTitle.textContent = 'Новое место';
-    popupFieldFirst.setAttribute('placeholder', 'Название');
-    popupFieldSecond.setAttribute('placeholder', 'Ссылка на картинку');
-    popupFieldFirst.value = "";
-    popupFieldSecond.value = "";
-    frmPopupSubmit.addEventListener('submit', addNewPlace);
-    btnPopupSubmit.textContent = 'Создать';
-
-    //Temp
-    //let idx = getRandomInt(6);
-    //popupFieldFirst.value = initialCards[idx].name;
-    //popupFieldSecond.value = initialCards[idx].link;
-  }
-  popup.classList.add('popup_is-opened');
-}
-
 function closePopup(){
-  popup.classList.remove('popup_is-opened');
-  frmPopupSubmit.removeEventListener('submit', addNewPlace);
-  frmPopupSubmit.removeEventListener('submit', changeProfileInfo);
+  document.querySelector('.popup').classList.remove('popup_is-opened');
 }
 
-function closeImagePopup(){
-  popupImage.classList.remove('popup_is-opened');
+function AddCommonEvents(element) {
+  element.querySelector('.popup__close').addEventListener('click', ()=>{
+    closePopup();
+  });
+  element.addEventListener('transitionend', ()=>{
+    if(!element.classList.contains('popup_is-opened'))
+    element.remove();
+  });
+  setTimeout(() => element.classList.add('popup_is-opened'), 0);
 }
 
-function addNewPlace(event){
-  event.preventDefault();
-  AddElement(popupFieldSecond.value, popupFieldFirst.value)
-  closePopup();
+//Popup сделан через template, так как иначе временно появлялся при обновлении страницы
+//popup image
+function openImagePopup(link, name){
+  //fileds
+  const imageTemplate = document.getElementById('#image-popup').content;
+  const imagePopup = imageTemplate.querySelector('.image-popup').cloneNode(true);
+  //change values
+  imagePopup.querySelector('.image-popup__image').setAttribute('src', link);
+  imagePopup.querySelector('.image-popup__caption').textContent = name;
+  //Events
+  AddCommonEvents(imagePopup);
+  //Добавление элемента на страницу
+  root.append(imagePopup);
 }
 
-function changeProfileInfo(event)
+//Popup
+function openPopup(e)
 {
-  event.preventDefault();
-  textProfileName.textContent = popupFieldFirst.value;
-  textProfileAbout.textContent = popupFieldSecond.value;
-  closePopup();
+  const popupTemplate = document.getElementById('#popup').content;
+  const popup = popupTemplate.querySelector('.popup').cloneNode(true);
+  const input1 = popup.querySelector('#popupFieldFirst');
+  const input2 = popup.querySelector('#popupFieldSecond');
+  const btn = popup.querySelector('.popup__button');
+  const titleField = popup.querySelector('.popup__title');
+  const form = popup.querySelector('.popup__form');
+  //Нажатие кнопки редактирования профиля
+  if(e.target.classList.contains('profile__edit-button')|| //Если нажали на поле кнопки
+      e.target.parentNode.classList.contains('profile__edit-button'))//Если нажали на картинку
+  {
+    const textProfileName = document.querySelector('.profile__name');
+    const textProfileAbout = document.querySelector('.profile__about');
+    input1.setAttribute('placeholder', 'Имя');
+    input2.setAttribute('placeholder', 'О себе');
+    input1.value = textProfileName.textContent;
+    input2.value = textProfileAbout.textContent;
+    btn.textContent = 'Сохранить';
+    titleField.textContent = 'Редактировать профиль';
+    //Events
+    form.addEventListener('submit', (event)=>{
+      event.preventDefault();
+      textProfileName.textContent = input1.value;
+      textProfileAbout.textContent = input2.value;
+      closePopup();
+    });
+  }
+  //Нажатие кнопки добавления элемента
+  if(e.target.classList.contains('profile__add-button') ||
+      e.target.parentNode.classList.contains('profile__add-button'))
+  {
+    input1.setAttribute('placeholder', 'Название');
+    input2.setAttribute('placeholder', 'Ссылка на картинку');
+    input1.value = "";
+    input2.value = "";
+    btn.textContent = 'Создать';
+    titleField.textContent = 'Новое место';
+    //Events
+    form.addEventListener('submit', (event)=>{
+      event.preventDefault();
+      AddElement(input2.value, input1.value);
+      closePopup();
+    });
+  }
+  //Events
+  AddCommonEvents(popup);
+  //Добавление элемента на страницу
+  root.append(popup);
 }
 
-//Popup Event Listeners
-btnOpenPopup.addEventListener('click', openPopupProfile);
-btnAddElement.addEventListener('click', openPopupPlace);
-btnClosePopup.addEventListener('click', closePopup);
-btnClosePopupImage.addEventListener('click', closeImagePopup);
-
-//Add element
+//Добавление элемента
 function AddElement(picLink, title){
-  elements.insertAdjacentHTML('afterbegin', `
-    <figure class="element">
-      <button type="button" class="button element__remove"></button>
-      <img
-        class="element__image"
-        src=${picLink}
-        alt=${title}
-        id = '#element__image'
-      />
-      <figcaption class="element__caption">
-        <h2 class="element__title">${title}</h2>
-        <button type="button" class="element__like"></button>
-      </figcaption>
-    </figure>
-    `);
-    //Добавляетм первому элементу обработчик нажания кнопки like
-    document.querySelectorAll('.element__like')[0].addEventListener(
-        'click',
-        (e)=>{
-          e.target.classList.toggle('element__like_checked');
-        }
-      );
-    //Добавляетм первому элементу обработчик нажания кнопки remove
-    document.querySelectorAll('.element__remove')[0].addEventListener(
-        'click',
-        (e) => {
-          e.target.parentNode.parentNode.removeChild(e.target.parentNode);
-        }
-      );
-    //Добавляетм первому элементу обработчик нажания на изображение
-    document.querySelectorAll('.element__image')[0].addEventListener(
-      'click',
-      (e) => {
-        openImagePopup(
-          e.target.getAttribute('src'),
-          e.target.parentNode.querySelector('.element__title').textContent
-          );
-      }
-    );
+  const elementTemplate = document.getElementById('#element').content;
+  const element = elementTemplate.querySelector('.element').cloneNode(true);
+  const image = element.querySelector('.element__image');
+  //Values
+  image.setAttribute('src', picLink);
+  image.setAttribute('alt', `Изображение ${title}`);
+  element.querySelector('.element__title').textContent = title;
+  //Events
+  //обработчик нажания кнопки like
+  element.querySelector('.element__like').addEventListener(
+    'click',
+    (e)=>{
+      e.target.classList.toggle('element__like_checked');
+    }
+  );
+  //обработчик нажания кнопки remove
+  element.querySelector('.element__remove').addEventListener(
+    'click',
+    (e) => {
+      e.target.parentNode.parentNode.removeChild(e.target.parentNode);
+    }
+  );
+  //обработчик нажания на изображение
+  element.querySelector('.element__image').addEventListener(
+    'click',
+    (e) => {
+      openImagePopup(
+        e.target.getAttribute('src'),
+        e.target.parentNode.querySelector('.element__title').textContent
+        );
+    }
+  );
+  //Добавление элемента на страницу в начало списка
+  document.querySelector('.elements').prepend(element);
 }
