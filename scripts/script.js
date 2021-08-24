@@ -49,7 +49,14 @@ function closePopup(){
   document.querySelector('.popup').classList.remove('popup_is-opened');
 }
 
-function AddCommonEvents(element) {
+function closePopupOnKeyboard(event) {
+  if(event.keyCode === 13){
+    event.preventDefault();
+    closePopup();
+  }
+}
+
+function AddCommonPopupEvents(element) {
   element.querySelector('.popup__close').addEventListener('click', ()=>{
     closePopup();
   });
@@ -70,7 +77,7 @@ function openImagePopup(link, name){
   imagePopup.querySelector('.image-popup__image').setAttribute('src', link);
   imagePopup.querySelector('.image-popup__caption').textContent = name;
   //Events
-  AddCommonEvents(imagePopup);
+  AddCommonPopupEvents(imagePopup);
   //Добавление элемента на страницу
   root.append(imagePopup);
 }
@@ -122,8 +129,12 @@ function openPopup(e)
       closePopup();
     });
   }
+
+  input1.addEventListener('keyup', closePopupOnKeyboard);
+  input2.addEventListener('keyup', closePopupOnKeyboard);
+
   //Events
-  AddCommonEvents(popup);
+  AddCommonPopupEvents(popup);
   //Добавление элемента на страницу
   root.append(popup);
 }
@@ -133,6 +144,7 @@ function AddElement(picLink, title){
   const elementTemplate = document.getElementById('#element').content;
   const element = elementTemplate.querySelector('.element').cloneNode(true);
   const image = element.querySelector('.element__image');
+  const elements = document.querySelector('.elements');
   //Values
   image.setAttribute('src', picLink);
   image.setAttribute('alt', `Изображение ${title}`);
@@ -149,7 +161,7 @@ function AddElement(picLink, title){
   element.querySelector('.element__remove').addEventListener(
     'click',
     (e) => {
-      e.target.parentNode.parentNode.removeChild(e.target.parentNode);
+      elements.removeChild(e.target.parentNode);
     }
   );
   //обработчик нажания на изображение
@@ -163,5 +175,5 @@ function AddElement(picLink, title){
     }
   );
   //Добавление элемента на страницу в начало списка
-  document.querySelector('.elements').prepend(element);
+  elements.prepend(element);
 }
