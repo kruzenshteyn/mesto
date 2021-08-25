@@ -13,7 +13,7 @@ let btnAddElement = document.querySelector('.profile__add-button');
 let popupTitle = document.querySelector('.popup__title');
 let btnPopupSubmit = document.querySelector('.popup__button');
 
-let elements = document.querySelector('.elements');
+
 
 let popupImage = document.querySelector('.image-popup');
 let btnClosePopupImage = document.getElementById("image-popup__close");
@@ -142,44 +142,39 @@ btnClosePopup.addEventListener('click', closePopup);
 btnClosePopupImage.addEventListener('click', closeImagePopup);
 
 //Add element
+//Добавление элемента
 function AddElement(picLink, title){
-  elements.insertAdjacentHTML('afterbegin', `
-    <figure class="element">
-      <button type="button" class="button element__remove"></button>
-      <img
-        class="element__image"
-        src=${picLink}
-        alt=${title}
-        id = '#element__image'
-      />
-      <figcaption class="element__caption">
-        <h2 class="element__title">${title}</h2>
-        <button type="button" class="element__like"></button>
-      </figcaption>
-    </figure>
-    `);
-    //Добавляетм первому элементу обработчик нажания кнопки like
-    document.querySelectorAll('.element__like')[0].addEventListener(
-        'click',
-        (e)=>{
-          e.target.classList.toggle('element__like_checked');
-        }
-      );
-    //Добавляетм первому элементу обработчик нажания кнопки remove
-    document.querySelectorAll('.element__remove')[0].addEventListener(
-        'click',
-        (e) => {
-          e.target.parentNode.parentNode.removeChild(e.target.parentNode);
-        }
-      );
-    //Добавляетм первому элементу обработчик нажания на изображение
-    document.querySelectorAll('.element__image')[0].addEventListener(
-      'click',
-      (e) => {
-        openImagePopup(
-          e.target.getAttribute('src'),
-          e.target.parentNode.querySelector('.element__title').textContent
-          );
-      }
-    );
+  const elementTemplate = document.getElementById('#element').content;
+  const element = elementTemplate.querySelector('.element').cloneNode(true);
+  const image = element.querySelector('.element__image');
+  const elements = document.querySelector('.elements');
+  //Values
+  image.setAttribute('src', picLink);
+  image.setAttribute('alt', `Изображение ${title}`);
+  element.querySelector('.element__title').textContent = title;
+  //Events
+  //обработчик нажания кнопки like
+  element.querySelector('.element__like').addEventListener(
+    'click',
+    (e)=>{
+      e.target.classList.toggle('element__like_checked');
+    }
+  );
+  //обработчик нажания кнопки remove
+  element.querySelector('.element__remove').addEventListener(
+    'click',
+    (e) => {
+      elements.removeChild(e.target.closest('.element'));
+    }
+  );
+  //обработчик нажания на изображение
+  element.querySelector('.element__image').addEventListener(
+    'click',
+    (e) => {
+      openImagePopup(picLink, title);
+    }
+  );
+  //Добавление элемента на страницу в начало списка
+  elements.prepend(element);
 }
+

@@ -80,14 +80,30 @@
         <button type="button" id="image-popup__close" class="button popup__close"></button>
         <img
           class="image-popup__image"
-          src="https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg"
-          alt="Гора Эльбрус"
+          src="#"
+          alt="#"
         />
         <figcaption class="image-popup__caption">
-          Гора Эльбрус
+
         </figcaption>
       </figure>
     </div>
+    <template id="#element">
+      <figure class="element">
+        <button type="button" class="button element__remove"></button>
+        <img
+          class="element__image"
+          src=${picLink}
+          alt=${title}
+          id = '#element__image'
+        />
+        <figcaption class="element__caption">
+          <h2 class="element__title">${title}</h2>
+          <button type="button" class="element__like"></button>
+        </figcaption>
+      </figure>
+    </template>
+
     <script src="./scripts/script.js" defer></script>
   </body>
 </html>
