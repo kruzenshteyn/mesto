@@ -40,7 +40,7 @@
     <template id="#element">
       <figure class="element">
         <button type="button" class="button element__remove"></button>
-        <img class="element__image" src="" alt="" id="#element__image" />
+        <img class="element__image" src="#" alt="#" id="#element__image" />
         <figcaption class="element__caption">
           <h2 class="element__title"></h2>
           <button type="button" class="element__like"></button>
@@ -48,34 +48,36 @@
       </figure>
     </template>
     <!--popup profile-->
-    <div class="popup">
+    <div class="popup" id="#popupProfile">
       <div class="popup__content">
         <button
           type="button"
-          id="#popup__close"
+          id="#popupProfileClose"
           class="button popup__close"
         ></button>
-        <h3 class="popup__title"></h3>
-        <form class="popup__form" name="formPopup">
+        <h3 class="popup__title">Редактировать профиль</h3>
+        <form class="popup__form" name="formPopup" id="#popupProfileForm">
           <input
             type="text"
             class="popup__field"
-            id="#popupFieldFirst"
-            placeholder=""
+            id="#popupProfileName"
+            placeholder="Имя"
             required
           />
           <input
             type="text"
             class="popup__field"
-            id="#popupFieldSecond"
-            placeholder=""
+            id="#popupProfileAbout"
+            placeholder="О себе"
             required
           />
           <button
             type="submit"
-            id="#popup__submit"
+            id="#popupProfileSubmit"
             class="button popup__button"
-          ></button>
+          >
+            Сохранить
+          </button>
         </form>
       </div>
     </div>
@@ -87,27 +89,29 @@
           id="#popupNewCardClose"
           class="button popup__close"
         ></button>
-        <h3 class="popup__title" id="#popupNewCardTitle"></h3>
+        <h3 class="popup__title" id="#popupNewCardTitle">Новое место</h3>
         <form class="popup__form" name="formPopup" id="#popupNewCardForm">
           <input
             type="text"
             class="popup__field"
             id="#popupNewCardCaption"
-            placeholder=""
+            placeholder="Название"
             required
           />
           <input
             type="text"
             class="popup__field"
             id="#popupNewCardLink"
-            placeholder=""
+            placeholder="Ссылка на картинку"
             required
           />
           <button
             type="submit"
             id="#popupNewCardSubmit"
             class="button popup__button"
-          ></button>
+          >
+            Создать
+          </button>
         </form>
       </div>
     </div>
@@ -119,7 +123,7 @@
           id="#image-popup__button"
           class="button popup__close"
         ></button>
-        <img class="image-popup__image" src="" alt="" />
+        <img class="image-popup__image" src="#" alt="#" />
         <figcaption class="image-popup__caption"></figcaption>
       </figure>
     </div>
