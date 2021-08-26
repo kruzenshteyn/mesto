@@ -57,6 +57,15 @@ function closeAnyPopup(sender){
   sender.closest('.popup').classList.remove('popup_is-opened');
 }
 
+//Popup close overlay
+function closePopupOverlay(e) {
+  if(e.target.classList.contains('popup')) {
+    e.stopImmediatePropagation();
+    e.stopPropagation();
+    closeAnyPopup(e.target);
+  }
+}
+
 //Popup-image
 const imagePopup = document.querySelector('.image-popup');
 const imagePopupLink = document.querySelector('.image-popup__image');
@@ -66,6 +75,8 @@ const imagePopupBtnClose = document.getElementById('#image-popup__button');
 imagePopupBtnClose.addEventListener('click', ()=>{
   closeAnyPopup(imagePopupBtnClose);
 });
+//Закрытие по клику на оверлэй
+imagePopup.addEventListener('click', closePopupOverlay);
 
 function openImagePopup(link, name){
   if(!imagePopup.classList.contains('popup_is-opened')){
@@ -86,6 +97,8 @@ popupProfileBtnClose.addEventListener('click', ()=>{
   closeAnyPopup(popupProfileBtnClose);
 });
 popupProfileForm.addEventListener('submit', changeProfileInfo);
+//Закрытие по клику на оверлэй
+popupProfile.addEventListener('click', closePopupOverlay);
 
 //profile page fields
 const textProfileName = document.querySelector('.profile__name');
@@ -118,6 +131,8 @@ popupNewCardBtnClose.addEventListener('click', ()=>{
   closeAnyPopup(popupNewCardBtnClose);
 });
 popupNewCardForm.addEventListener('submit', SubmitNewCard);
+//Закрытие по клику на оверлэй
+popupNewCard.addEventListener('click', closePopupOverlay);
 
 function SubmitNewCard(event) {
   event.preventDefault();

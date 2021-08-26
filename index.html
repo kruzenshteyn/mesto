@@ -63,6 +63,8 @@
             id="#popupProfileName"
             placeholder="Имя"
             required
+            minlength="2"
+            maxlength="40"
           />
           <input
             type="text"
@@ -70,6 +72,8 @@
             id="#popupProfileAbout"
             placeholder="О себе"
             required
+            minlength="2"
+            maxlength="200"
           />
           <button
             type="submit"
@@ -97,9 +101,11 @@
             id="#popupNewCardCaption"
             placeholder="Название"
             required
+            minlength="1"
+            maxlength="30"
           />
           <input
-            type="text"
+            type="url"
             class="popup__field"
             id="#popupNewCardLink"
             placeholder="Ссылка на картинку"
