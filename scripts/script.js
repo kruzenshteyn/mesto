@@ -115,6 +115,8 @@ function SubmitNewCard(event) {
 }
 
 function openPopupNewCard() {
+  popupNewCardCaption.value = "";
+  popupNewCardLink.value = "";
   popupNewCard.classList.add('popup_is-opened');
 }
 
