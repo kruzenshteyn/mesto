@@ -33,7 +33,8 @@ const initialCards = [
 
 //Загрузка изображений из массива
 function loadDefaultPlaces(){
-  initialCards.forEach(function(item, i , initialCards){
+  //initialCards.forEach(function(item, i , initialCards){
+  initialCards.forEach((item)=>{
     AddElementToPage(item.link, item.name);
   });
 }
