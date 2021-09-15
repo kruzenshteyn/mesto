@@ -40,8 +40,7 @@ const checkInputValidity = (formElement, inputElement, inputErrorClass, errorCla
   }
 };
 
-const toggleButtonState = (formElement, inputList, submitButtonSelector, inactiveButtonClass)=>{
-  const buttonElement = formElement.querySelector(submitButtonSelector);
+const toggleButtonState = (buttonElement, inputList, inactiveButtonClass)=>{
   if(hasInvalidInput(inputList) || hasNoInvalidInput(inputList)){
     disableSubmitButton(buttonElement, inactiveButtonClass);
   }else{
@@ -49,12 +48,14 @@ const toggleButtonState = (formElement, inputList, submitButtonSelector, inactiv
   }
 };
 
-const setEventListeners = (formElement, inputSelector, submitButtonSelector, inputErrorClass, errorClass, inactiveButtonClass)=>{
-  const inputList = Array.from(formElement.querySelectorAll(inputSelector));
+const setEventListeners = (formElement, config)=>{
+  const buttonElement = formElement.querySelector(config.submitButtonSelector);
+  const inputList = Array.from(formElement.querySelectorAll(config.inputSelector));
+
   inputList.forEach(inputElement =>{
     inputElement.addEventListener('input', ()=>{
-      checkInputValidity(formElement, inputElement, inputErrorClass, errorClass);
-      toggleButtonState(formElement, inputList, submitButtonSelector, inactiveButtonClass);
+      checkInputValidity(formElement, inputElement, config.inputErrorClass, config.errorClass);
+      toggleButtonState(buttonElement, inputList, config.inactiveButtonClass);
     });
   });
 
@@ -62,20 +63,14 @@ const setEventListeners = (formElement, inputSelector, submitButtonSelector, inp
     event.preventDefault();
   });
 
-  toggleButtonState(formElement, inputList, submitButtonSelector, inactiveButtonClass);
+  toggleButtonState(buttonElement, inputList, config.inactiveButtonClass);
 }
 
 const enableValidation = (config) =>{
   const formList = document.querySelectorAll(config.formSelector);
   formList.forEach(formElement =>{
       setEventListeners(
-        formElement,
-        config.inputSelector,
-        config.submitButtonSelector,
-        config.inputErrorClass,
-        config.errorClass,
-        config.inactiveButtonClass
-        );
+        formElement, config);
   });
 }
 
