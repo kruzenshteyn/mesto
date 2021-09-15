@@ -1,0 +1,5 @@
+.popup__error_visible{
+  opacity: 1;
+  display: inline-block;
+  margin-bottom: 7px;
+}

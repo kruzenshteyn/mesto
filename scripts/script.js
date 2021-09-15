@@ -62,9 +62,22 @@ function closePopupOverlay(e) {
   if(e.target.classList.contains('popup')) {
     e.stopImmediatePropagation();
     e.stopPropagation();
-    closeAnyPopup(e.target);
+    closeAnyPopup(this);
   }
 }
+
+//Popup close Esc
+//Прослушиваем документ на событие нажатия кнопки
+//Используем keydown, так как keypress не работает со специальными клавишами
+document.addEventListener('keydown', (event)=>{
+  if(event.key === 'Escape'){
+    event.preventDefault();
+    //Ищем активный popup
+    const activePopup = document.querySelector('.popup_is-opened');
+    if(activePopup === null) return;
+    closeAnyPopup(activePopup);
+  }
+});
 
 //Popup-image
 const imagePopup = document.querySelector('.image-popup');
@@ -78,6 +91,8 @@ imagePopupBtnClose.addEventListener('click', ()=>{
 //Закрытие по клику на оверлэй
 imagePopup.addEventListener('click', closePopupOverlay);
 
+
+
 function openImagePopup(link, name){
   if(!imagePopup.classList.contains('popup_is-opened')){
     imagePopupLink.setAttribute('src', link);
@@ -88,8 +103,8 @@ function openImagePopup(link, name){
 
 //Popup profile
 const popupProfile = document.getElementById('#popupProfile');
-const popupProfileName = document.getElementById('#popupProfileName');
-const popupProfileAbout = document.getElementById('#popupProfileAbout');
+const popupProfileName = document.getElementById('name');
+const popupProfileAbout = document.getElementById('about');
 const popupProfileBtnSubmit = document.getElementById('#popupProfileSubmit');
 const popupProfileForm = document.getElementById('#popupProfileForm');
 const popupProfileBtnClose = document.getElementById('#popupProfileClose');
@@ -122,8 +137,8 @@ function openPopupProfile() {
 
 //popup new card
 const popupNewCard = document.getElementById('#popupNewCard');
-const popupNewCardCaption = document.getElementById('#popupNewCardCaption');
-const popupNewCardLink = document.getElementById('#popupNewCardLink');
+const popupNewCardCaption = document.getElementById('caption');
+const popupNewCardLink = document.getElementById('link');
 const popupNewCardBtnSubmit = document.getElementById('#popupNewCardSubmit');
 const popupNewCardForm = document.getElementById('#popupNewCardForm');
 const popupNewCardBtnClose = document.getElementById('#popupNewCardClose');
@@ -185,5 +200,17 @@ function createCard(picLink, title) {
   );
   return element;
 }
+
+
+const enableValidationConfig = {
+  formSelector: '.popup__form',
+  inputSelector: '.popup__input',
+  submitButtonSelector: '.popup__button',
+  inactiveButtonClass: 'popup__button_disabled',
+  inputErrorClass: 'popup__input_type_error',
+  errorClass: 'popup__error_visible'
+};
+
+enableValidation(enableValidationConfig);
 
 

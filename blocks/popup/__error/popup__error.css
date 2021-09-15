@@ -1,0 +1,8 @@
+.popup__error{
+  /* Вы пропустили это поле. */
+  display: inline;
+  font-size: 12px;
+  line-height: 1.25;
+  color: #FF0000;
+  opacity: 0;
+}
