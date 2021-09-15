@@ -50,10 +50,6 @@ const toggleButtonState = (formElement, inputList, submitButtonSelector, inactiv
 };
 
 const setEventListeners = (formElement, inputSelector, submitButtonSelector, inputErrorClass, errorClass, inactiveButtonClass)=>{
-  formElement.addEventListener('submit', (event) => {
-    event.preventDefault();
-  });
-
   const inputList = Array.from(formElement.querySelectorAll(inputSelector));
   inputList.forEach(inputElement =>{
     inputElement.addEventListener('input', ()=>{
@@ -61,9 +57,13 @@ const setEventListeners = (formElement, inputSelector, submitButtonSelector, inp
       toggleButtonState(formElement, inputList, submitButtonSelector, inactiveButtonClass);
     });
   });
+
+  formElement.addEventListener('submit', (event) => {
+    event.preventDefault();
+  });
+
   toggleButtonState(formElement, inputList, submitButtonSelector, inactiveButtonClass);
 }
-
 
 const enableValidation = (config) =>{
   const formList = document.querySelectorAll(config.formSelector);

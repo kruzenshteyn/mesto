@@ -202,7 +202,7 @@ function createCard(picLink, title) {
 }
 
 
-const enableValidationConfig = {
+const enableValidationFields = {
   formSelector: '.popup__form',
   inputSelector: '.popup__input',
   submitButtonSelector: '.popup__button',
@@ -211,6 +211,6 @@ const enableValidationConfig = {
   errorClass: 'popup__error_visible'
 };
 
-enableValidation(enableValidationConfig);
+enableValidation(enableValidationFields);
 
 
