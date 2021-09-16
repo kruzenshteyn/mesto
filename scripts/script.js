@@ -5,12 +5,10 @@ const root = document.querySelector('.root');
 const elements = document.querySelector('.elements');
 const elementTemplate = document.getElementById('#element').content;
 
-
 //Загрузка изображений из массива
 initialCards.forEach((item)=>{
   addElementToPage(item.link, item.name);
 });
-
 
 //Buttons
 const btnEditProfile = document.querySelector('.profile__edit-button');
@@ -104,6 +102,7 @@ function openPopupProfile() {
     popupProfileName.value = textProfileName.textContent;
     popupProfileAbout.value = textProfileAbout.textContent;
   }
+  disableSubmitButton(popupProfileBtnSubmit, enableValidationFields.inactiveButtonClass);
   openAnyPopup(popupProfile);
 }
 
@@ -130,6 +129,7 @@ function submitNewCard(event) {
 function openPopupNewCard() {
   popupNewCardCaption.value = "";
   popupNewCardLink.value = "";
+  disableSubmitButton(popupNewCardBtnSubmit, enableValidationFields.inactiveButtonClass);
   openAnyPopup(popupNewCard);
 }
 

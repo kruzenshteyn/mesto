@@ -22,8 +22,11 @@ const hasNoInvalidInput = (inputList) =>{
   });
 };
 
+let counter = 0;
 const disableSubmitButton = (buttonElement, inactiveButtonClass) =>{
-  buttonElement.classList.add(inactiveButtonClass);
+  if(!buttonElement.classList.contains(inactiveButtonClass))
+    buttonElement.classList.add(inactiveButtonClass);
+  console.log(`buttonElement disabled is ${buttonElement.classList.contains(inactiveButtonClass)} in ${counter} iteration`);
 };
 
 const enableSubmitButton = (buttonElement, inactiveButtonClass) =>{
