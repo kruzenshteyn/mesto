@@ -3,42 +3,14 @@ const root = document.querySelector('.root');
 
 //Cards
 const elements = document.querySelector('.elements');
+const elementTemplate = document.getElementById('#element').content;
 
-const initialCards = [
-  {
-    name: 'Архыз',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-  },
-  {
-    name: 'Челябинская область',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-  },
-  {
-    name: 'Иваново',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-  },
-  {
-    name: 'Камчатка',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-  },
-  {
-    name: 'Холмогорский район',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-  },
-  {
-    name: 'Байкал',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-  }
-];
 
 //Загрузка изображений из массива
-function loadDefaultPlaces(){
-  //initialCards.forEach(function(item, i , initialCards){
-  initialCards.forEach((item)=>{
-    AddElementToPage(item.link, item.name);
-  });
-}
-loadDefaultPlaces();
+initialCards.forEach((item)=>{
+  addElementToPage(item.link, item.name);
+});
+
 
 //Buttons
 const btnEditProfile = document.querySelector('.profile__edit-button');
@@ -50,12 +22,16 @@ btnAddElement.addEventListener('click', openPopupNewCard);
 
 function openAnyPopup(sender) {
   sender.classList.add('popup_is-opened');
+  document.addEventListener('keydown', closeByESC);
 }
 
 //Popups
 function closeAnyPopup(sender){
   sender.closest('.popup').classList.remove('popup_is-opened');
+  document.removeEventListener('keydown', closeByESC);
 }
+
+const ESC_CODE = 'Escape';
 
 //Popup close overlay
 function closePopupOverlay(e) {
@@ -66,18 +42,15 @@ function closePopupOverlay(e) {
   }
 }
 
-//Popup close Esc
-//Прослушиваем документ на событие нажатия кнопки
-//Используем keydown, так как keypress не работает со специальными клавишами
-document.addEventListener('keydown', (event)=>{
-  if(event.key === 'Escape'){
+function closeByESC(event) {
+  if(event.key === ESC_CODE){
     event.preventDefault();
     //Ищем активный popup
     const activePopup = document.querySelector('.popup_is-opened');
     if(activePopup === null) return;
     closeAnyPopup(activePopup);
   }
-});
+}
 
 //Popup-image
 const imagePopup = document.querySelector('.image-popup');
@@ -89,7 +62,7 @@ imagePopupBtnClose.addEventListener('click', ()=>{
   closeAnyPopup(imagePopupBtnClose);
 });
 //Закрытие по клику на оверлэй
-imagePopup.addEventListener('click', closePopupOverlay);
+imagePopup.addEventListener('mousedown', closePopupOverlay);
 
 
 
@@ -113,7 +86,7 @@ popupProfileBtnClose.addEventListener('click', ()=>{
 });
 popupProfileForm.addEventListener('submit', changeProfileInfo);
 //Закрытие по клику на оверлэй
-popupProfile.addEventListener('click', closePopupOverlay);
+popupProfile.addEventListener('mousedown', closePopupOverlay);
 
 //profile page fields
 const textProfileName = document.querySelector('.profile__name');
@@ -123,7 +96,6 @@ function changeProfileInfo(event) {
   event.preventDefault();
   textProfileName.textContent = popupProfileName.value;
   textProfileAbout.textContent = popupProfileAbout.value;
-  popupProfileForm.removeEventListener('submit', changeProfileInfo);
   closeAnyPopup(event.target);
 }
 
@@ -145,13 +117,13 @@ const popupNewCardBtnClose = document.getElementById('#popupNewCardClose');
 popupNewCardBtnClose.addEventListener('click', ()=>{
   closeAnyPopup(popupNewCardBtnClose);
 });
-popupNewCardForm.addEventListener('submit', SubmitNewCard);
+popupNewCardForm.addEventListener('submit', submitNewCard);
 //Закрытие по клику на оверлэй
-popupNewCard.addEventListener('click', closePopupOverlay);
+popupNewCard.addEventListener('mousedown', closePopupOverlay);
 
-function SubmitNewCard(event) {
+function submitNewCard(event) {
   event.preventDefault();
-  AddElementToPage(popupNewCardLink.value, popupNewCardCaption.value);
+  addElementToPage(popupNewCardLink.value, popupNewCardCaption.value);
   closeAnyPopup(event.target);
 }
 
@@ -162,14 +134,13 @@ function openPopupNewCard() {
 }
 
 //Добавление элемента
-function AddElementToPage(picLink, title){
+function addElementToPage(picLink, title){
   const element = createCard(picLink, title);
   //Добавление элемента на страницу в начало списка
   elements.prepend(element);
 }
 
 function createCard(picLink, title) {
-  const elementTemplate = document.getElementById('#element').content;
   const element = elementTemplate.querySelector('.element').cloneNode(true);
   const image = element.querySelector('.element__image');
   //Values

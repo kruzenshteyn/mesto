@@ -31,17 +31,6 @@
           </button>
         </section>
         <section class="elements root__elements">
-          <!--card-->
-          <template id="#element">
-            <figure class="element">
-              <button type="button" class="button element__remove"></button>
-              <img class="element__image" src="#" alt="#" id="#element__image" />
-              <figcaption class="element__caption">
-                <h2 class="element__title"></h2>
-                <button type="button" class="element__like"></button>
-              </figcaption>
-            </figure>
-          </template>
         </section>
       </main>
       <footer class="footer root__footer">
@@ -57,7 +46,7 @@
           class="button popup__close"
         ></button>
         <h3 class="popup__title">Редактировать профиль</h3>
-        <form class="popup__form" name="formPopup" id="#popupProfileForm">
+        <form class="popup__form" name="formProfile" id="#popupProfileForm">
           <input
             type="text"
             class="popup__input"
@@ -97,7 +86,7 @@
           class="button popup__close"
         ></button>
         <h3 class="popup__title" id="#popupNewCardTitle">Новое место</h3>
-        <form class="popup__form" name="formPopup" id="#popupNewCardForm">
+        <form class="popup__form" name="formNewCard" id="#popupNewCardForm">
           <input
             type="text"
             class="popup__input"
@@ -138,6 +127,18 @@
         <figcaption class="image-popup__caption"></figcaption>
       </figure>
     </div>
+    <!--card-->
+    <template id="#element">
+      <figure class="element">
+        <button type="button" class="button element__remove"></button>
+        <img class="element__image" src="#" alt="#" id="#element__image" />
+        <figcaption class="element__caption">
+          <h2 class="element__title"></h2>
+          <button type="button" class="element__like"></button>
+        </figcaption>
+      </figure>
+    </template>
+    <script src="./scripts/initialCards.js" defer></script>
     <script src="./scripts/validate.js" defer></script>
     <script src="./scripts/script.js" defer></script>
   </body>
