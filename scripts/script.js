@@ -1,3 +1,5 @@
+import Card from "./card.js";
+
 //Main container
 const root = document.querySelector('.root');
 
@@ -135,11 +137,19 @@ function openPopupNewCard() {
 
 //Добавление элемента
 function addElementToPage(picLink, title){
-  const element = createCard(picLink, title);
+  //const element = createCard(picLink, title);
+  const card = new Card({link:picLink, about:title}, '#element');
+  const element = card.createCard();
+  element.querySelector('.element__image').addEventListener(
+    'click',
+    () => {
+      openImagePopup(picLink, title);
+    }
+  );
   //Добавление элемента на страницу в начало списка
   elements.prepend(element);
 }
-
+/*
 function createCard(picLink, title) {
   const element = elementTemplate.querySelector('.element').cloneNode(true);
   const image = element.querySelector('.element__image');
@@ -171,7 +181,7 @@ function createCard(picLink, title) {
   );
   return element;
 }
-
+*/
 
 const enableValidationFields = {
   formSelector: '.popup__form',
