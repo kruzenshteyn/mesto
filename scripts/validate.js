@@ -22,17 +22,16 @@ const hasNoInvalidInput = (inputList) =>{
   });
 };
 
-let counter = 0;
+//ok
 const disableSubmitButton = (buttonElement, inactiveButtonClass) =>{
   if(!buttonElement.classList.contains(inactiveButtonClass))
     buttonElement.classList.add(inactiveButtonClass);
-  //console.log(`buttonElement disabled is ${buttonElement.classList.contains(inactiveButtonClass)} in ${counter} iteration`);
 };
-
+//ok
 const enableSubmitButton = (buttonElement, inactiveButtonClass) =>{
   buttonElement.classList.remove(inactiveButtonClass);
 };
-
+//ok
 const checkInputValidity = (formElement, inputElement, inputErrorClass, errorClass)=>{
   const errorElement = formElement.querySelector(`#${inputElement.id}-error`);
   if(!inputElement.validity.valid){
@@ -43,6 +42,7 @@ const checkInputValidity = (formElement, inputElement, inputErrorClass, errorCla
   }
 };
 
+//ok
 const toggleButtonState = (buttonElement, inputList, inactiveButtonClass)=>{
   if(hasInvalidInput(inputList) || hasNoInvalidInput(inputList)){
     disableSubmitButton(buttonElement, inactiveButtonClass);
@@ -51,6 +51,7 @@ const toggleButtonState = (buttonElement, inputList, inactiveButtonClass)=>{
   }
 };
 
+//ok
 const setEventListeners = (formElement, config)=>{
   const buttonElement = formElement.querySelector(config.submitButtonSelector);
   const inputList = Array.from(formElement.querySelectorAll(config.inputSelector));

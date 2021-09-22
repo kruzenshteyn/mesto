@@ -1,4 +1,5 @@
 import Card from "./card.js";
+import FormValidate from "./FormValidate.js";
 
 //Main container
 const root = document.querySelector('.root');
@@ -104,7 +105,7 @@ function openPopupProfile() {
     popupProfileName.value = textProfileName.textContent;
     popupProfileAbout.value = textProfileAbout.textContent;
   }
-  disableSubmitButton(popupProfileBtnSubmit, enableValidationFields.inactiveButtonClass);
+  //disableSubmitButton(popupProfileBtnSubmit, enableValidationFields.inactiveButtonClass);
   openAnyPopup(popupProfile);
 }
 
@@ -131,7 +132,7 @@ function submitNewCard(event) {
 function openPopupNewCard() {
   popupNewCardCaption.value = "";
   popupNewCardLink.value = "";
-  disableSubmitButton(popupNewCardBtnSubmit, enableValidationFields.inactiveButtonClass);
+  //disableSubmitButton(popupNewCardBtnSubmit, enableValidationFields.inactiveButtonClass);
   openAnyPopup(popupNewCard);
 }
 
@@ -191,7 +192,11 @@ const enableValidationFields = {
   inputErrorClass: 'popup__input_type_error',
   errorClass: 'popup__error_visible'
 };
-
+/*
 enableValidation(enableValidationFields);
+*/
 
+const frmProfileValidaton = new FormValidate(enableValidationFields, "#popupProfileForm").enableValidation();
+
+const frmNewCardValidaton = new FormValidate(enableValidationFields, "#popupNewCardForm").enableValidation();;
 
