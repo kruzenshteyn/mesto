@@ -75,6 +75,11 @@ function openImagePopup(link, name){
   openAnyPopup(imagePopup);
 }
 
+const disableSubmitButton = (buttonElement, inactiveButtonClass) =>{
+  if(!buttonElement.classList.contains(inactiveButtonClass))
+    buttonElement.classList.add(inactiveButtonClass);
+};
+
 //Popup profile
 const popupProfile = document.getElementById('#popupProfile');
 const popupProfileName = document.getElementById('name');
@@ -105,7 +110,7 @@ function openPopupProfile() {
     popupProfileName.value = textProfileName.textContent;
     popupProfileAbout.value = textProfileAbout.textContent;
   }
-  //disableSubmitButton(popupProfileBtnSubmit, enableValidationFields.inactiveButtonClass);
+  disableSubmitButton(popupProfileBtnSubmit, enableValidationFields.inactiveButtonClass);
   openAnyPopup(popupProfile);
 }
 
@@ -132,7 +137,7 @@ function submitNewCard(event) {
 function openPopupNewCard() {
   popupNewCardCaption.value = "";
   popupNewCardLink.value = "";
-  //disableSubmitButton(popupNewCardBtnSubmit, enableValidationFields.inactiveButtonClass);
+  disableSubmitButton(popupNewCardBtnSubmit, enableValidationFields.inactiveButtonClass);
   openAnyPopup(popupNewCard);
 }
 
@@ -141,38 +146,7 @@ function addElementToPage(picLink, title){
   //const element = createCard(picLink, title);
   const card = new Card({link:picLink, about:title}, '#element');
   const element = card.createCard();
-  element.querySelector('.element__image').addEventListener(
-    'click',
-    () => {
-      openImagePopup(picLink, title);
-    }
-  );
-  //Добавление элемента на страницу в начало списка
-  elements.prepend(element);
-}
-/*
-function createCard(picLink, title) {
-  const element = elementTemplate.querySelector('.element').cloneNode(true);
-  const image = element.querySelector('.element__image');
-  //Values
-  image.setAttribute('src', picLink);
-  image.setAttribute('alt', `Изображение ${title}`);
-  element.querySelector('.element__title').textContent = title;
-  //Events
-  //обработчик нажания кнопки like
-  element.querySelector('.element__like').addEventListener(
-    'click',
-    (e)=>{
-      e.target.classList.toggle('element__like_checked');
-    }
-  );
-  //обработчик нажания кнопки remove
-  element.querySelector('.element__remove').addEventListener(
-    'click',
-    (e) => {
-      e.target.closest('.element').remove();
-    }
-  );
+
   //обработчик нажания на изображение
   element.querySelector('.element__image').addEventListener(
     'click',
@@ -180,9 +154,10 @@ function createCard(picLink, title) {
       openImagePopup(picLink, title);
     }
   );
-  return element;
+
+  //Добавление элемента на страницу в начало списка
+  elements.prepend(element);
 }
-*/
 
 const enableValidationFields = {
   formSelector: '.popup__form',
@@ -192,9 +167,6 @@ const enableValidationFields = {
   inputErrorClass: 'popup__input_type_error',
   errorClass: 'popup__error_visible'
 };
-/*
-enableValidation(enableValidationFields);
-*/
 
 const frmProfileValidaton = new FormValidate(enableValidationFields, "#popupProfileForm").enableValidation();
 

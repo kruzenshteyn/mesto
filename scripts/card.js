@@ -15,14 +15,14 @@ export default class Card{
   }
 
   createCard() {
-    this.element = this._getTemplate();
-    const image = this.element.querySelector('.element__image');
+    this._element = this._getTemplate();
+    const image = this._element.querySelector('.element__image');
     //Values
     image.setAttribute('src', this._link);
     image.setAttribute('alt', `Изображение ${this._about}`);
-    this.element.querySelector('.element__title').textContent = this._about;
+    this._element.querySelector('.element__title').textContent = this._about;
     this._setEventListeners();
-    return this.element;
+    return this._element;
   }
 
   _handleRemoveCard(e) {
@@ -36,12 +36,12 @@ export default class Card{
   _setEventListeners() {
     //Events
     //обработчик нажания кнопки like
-    this.element.querySelector('.element__remove').addEventListener(
+    this._element.querySelector('.element__remove').addEventListener(
       'click',
       this._handleRemoveCard
     );
     //обработчик нажания кнопки remove
-    this.element.querySelector('.element__like').addEventListener(
+    this._element.querySelector('.element__like').addEventListener(
       'click',
       this._handleLikeChecking
     );
