@@ -1,8 +1,7 @@
-import Card from "./card.js";
-import FormValidate from "./FormValidate.js";
+import Card from "./Сard.js";
+import FormValidator from "./FormValidator.js";
+import initialCards from "./initialCards.js"
 
-//Main container
-const root = document.querySelector('.root');
 
 //Cards
 const elements = document.querySelector('.elements');
@@ -13,22 +12,49 @@ initialCards.forEach((item)=>{
   addElementToPage(item.link, item.name);
 });
 
+
 //Buttons
 const btnEditProfile = document.querySelector('.profile__edit-button');
 const btnAddElement = document.querySelector('.profile__add-button');
+
+//Popup-image
+const imagePopup = document.querySelector('.image-popup');
+const imagePopupLink = document.querySelector('.image-popup__image');
+const imagePopupCaption = document.querySelector('.image-popup__caption');
+const imagePopupBtnClose = document.getElementById('#image-popup__button');
+
+//Popup profile
+const popupProfile = document.getElementById('#popupProfile');
+const popupProfileName = document.getElementById('name');
+const popupProfileAbout = document.getElementById('about');
+const popupProfileBtnSubmit = document.getElementById('#popupProfileSubmit');
+const popupProfileForm = document.getElementById('#popupProfileForm');
+const popupProfileBtnClose = document.getElementById('#popupProfileClose');
+
+//profile page fields
+const textProfileName = document.querySelector('.profile__name');
+const textProfileAbout = document.querySelector('.profile__about');
+
+//popup new card
+const popupNewCard = document.getElementById('#popupNewCard');
+const popupNewCardCaption = document.getElementById('caption');
+const popupNewCardLink = document.getElementById('link');
+const popupNewCardBtnSubmit = document.getElementById('#popupNewCardSubmit');
+const popupNewCardForm = document.getElementById('#popupNewCardForm');
+const popupNewCardBtnClose = document.getElementById('#popupNewCardClose');
 
 //Button Event Listeners
 btnEditProfile.addEventListener('click', openPopupProfile);
 btnAddElement.addEventListener('click', openPopupNewCard);
 
-function openAnyPopup(sender) {
-  sender.classList.add('popup_is-opened');
+function openAnyPopup(popup) {
+  popup.classList.add('popup_is-opened');
   document.addEventListener('keydown', closeByESC);
 }
 
 //Popups
-function closeAnyPopup(sender){
-  sender.closest('.popup').classList.remove('popup_is-opened');
+function closeAnyPopup(popup){
+  popup.closest('.popup').classList.remove('popup_is-opened');
   document.removeEventListener('keydown', closeByESC);
 }
 
@@ -53,19 +79,12 @@ function closeByESC(event) {
   }
 }
 
-//Popup-image
-const imagePopup = document.querySelector('.image-popup');
-const imagePopupLink = document.querySelector('.image-popup__image');
-const imagePopupCaption = document.querySelector('.image-popup__caption');
-const imagePopupBtnClose = document.getElementById('#image-popup__button');
 //Добавим событие на кнопку закрытия popupImage
 imagePopupBtnClose.addEventListener('click', ()=>{
   closeAnyPopup(imagePopupBtnClose);
 });
 //Закрытие по клику на оверлэй
 imagePopup.addEventListener('mousedown', closePopupOverlay);
-
-
 
 function openImagePopup(link, name){
   if(!imagePopup.classList.contains('popup_is-opened')){
@@ -80,23 +99,12 @@ const disableSubmitButton = (buttonElement, inactiveButtonClass) =>{
     buttonElement.classList.add(inactiveButtonClass);
 };
 
-//Popup profile
-const popupProfile = document.getElementById('#popupProfile');
-const popupProfileName = document.getElementById('name');
-const popupProfileAbout = document.getElementById('about');
-const popupProfileBtnSubmit = document.getElementById('#popupProfileSubmit');
-const popupProfileForm = document.getElementById('#popupProfileForm');
-const popupProfileBtnClose = document.getElementById('#popupProfileClose');
 popupProfileBtnClose.addEventListener('click', ()=>{
   closeAnyPopup(popupProfileBtnClose);
 });
 popupProfileForm.addEventListener('submit', changeProfileInfo);
 //Закрытие по клику на оверлэй
 popupProfile.addEventListener('mousedown', closePopupOverlay);
-
-//profile page fields
-const textProfileName = document.querySelector('.profile__name');
-const textProfileAbout = document.querySelector('.profile__about');
 
 function changeProfileInfo(event) {
   event.preventDefault();
@@ -114,13 +122,6 @@ function openPopupProfile() {
   openAnyPopup(popupProfile);
 }
 
-//popup new card
-const popupNewCard = document.getElementById('#popupNewCard');
-const popupNewCardCaption = document.getElementById('caption');
-const popupNewCardLink = document.getElementById('link');
-const popupNewCardBtnSubmit = document.getElementById('#popupNewCardSubmit');
-const popupNewCardForm = document.getElementById('#popupNewCardForm');
-const popupNewCardBtnClose = document.getElementById('#popupNewCardClose');
 popupNewCardBtnClose.addEventListener('click', ()=>{
   closeAnyPopup(popupNewCardBtnClose);
 });
@@ -168,7 +169,8 @@ const enableValidationFields = {
   errorClass: 'popup__error_visible'
 };
 
-const frmProfileValidaton = new FormValidate(enableValidationFields, "#popupProfileForm").enableValidation();
 
-const frmNewCardValidaton = new FormValidate(enableValidationFields, "#popupNewCardForm").enableValidation();;
+const frmProfileValidaton = new FormValidator(enableValidationFields, "#popupProfileForm").enableValidation();
+
+const frmNewCardValidaton = new FormValidator(enableValidationFields, "#popupNewCardForm").enableValidation();;
 

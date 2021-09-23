@@ -1,4 +1,4 @@
-export default class FormValidate{
+export default class FormValidator{
   constructor(config, formSelector){
     this._formSelector = formSelector;
     this._inputSelector = config.inputSelector;
@@ -30,9 +30,9 @@ export default class FormValidate{
     });
   };
 
-  _hasNoInvalidInput(){
+  _hasEmptyInput(){
     return this._inputList.some(inputElement =>{
-      return inputElement.value.lenght === 0;
+      return inputElement.value.length === 0;
     });
   };
 
@@ -56,7 +56,7 @@ export default class FormValidate{
   };
 
   _toggleButtonState(){
-    if(this._hasInvalidInput(this._inputList) || this._hasNoInvalidInput(this._inputList)){
+    if(this._hasInvalidInput(this._inputList) || this._hasEmptyInput(this._inputList)){
       this._disableSubmitButton();
     }else{
       this._enableSubmitButton();
