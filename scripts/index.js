@@ -145,16 +145,16 @@ function openPopupNewCard() {
 //Добавление элемента
 function addElementToPage(picLink, title){
   //const element = createCard(picLink, title);
-  const card = new Card({link:picLink, about:title}, '#element');
+  const card = new Card({link:picLink, about:title, handleCardClick:openImagePopup}, '#element');
   const element = card.createCard();
 
   //обработчик нажания на изображение
-  element.querySelector('.element__image').addEventListener(
+  /*element.querySelector('.element__image').addEventListener(
     'click',
     () => {
       openImagePopup(picLink, title);
     }
-  );
+  );*/
 
   //Добавление элемента на страницу в начало списка
   elements.prepend(element);

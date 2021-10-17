@@ -4,6 +4,7 @@ export default class Card{
     this.cardSelector = cardSelector;
     this._about = data.about;
     this._link = data.link;
+    this.handleCardClick = data.handleCardClick;
   }
 
   _getTemplate(){
@@ -45,6 +46,14 @@ export default class Card{
       'click',
       this._handleLikeChecking
     );
+    if(typeof this.handleCardClick !== 'undefined'){
+      this._element.querySelector('.element__image').addEventListener(
+        'click',
+        () => {
+          this.handleCardClick(this._link, this._about);
+        }
+      );
+    }
   }
 
 }
