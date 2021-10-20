@@ -2,29 +2,28 @@
 <html lang="ru">
   <head>
     <meta charset="UTF-8" />
-    <link rel="stylesheet" href="./pages/index.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Путешествия по России</title>
   </head>
   <body class="root">
     <header class="header">
-      <img class="header__logo" src="./images/logo.svg" alt="Логотип" />
+      <img class="header__logo" src="<%=require('./images/logo.svg')%>" alt="Логотип" />
     </header>
     <div class="root__container">
       <!--main content-->
       <main class="content">
         <section class="profile root__profile">
-          <img class="profile__avatar" src="./images/kusto.jpg" alt="Аватар" />
+          <img class="profile__avatar" src="<%=require('./images/kusto.jpg')%>" alt="Аватар" />
           <div class="profile__info">
             <h1 class="profile__name">Жак-Ив Кусто</h1>
             <button type="button" class="button profile__edit-button">
-              <img src="./images/edit_btn.svg" alt="Ручка" />
+              <img src="<%=require('./images/edit_btn.svg')%>" alt="Ручка" />
             </button>
             <p class="profile__about">Исследователь океана</p>
           </div>
           <button type="button" class="button profile__add-button">
             <img
-              src="./images/plus.svg"
+              src="<%=require('./images/plus.svg')%>"
               class="profile__add-image"
               alt="Добавить"
             />
@@ -142,6 +141,5 @@
         </figcaption>
       </figure>
     </template>
-    <script type="module" src="./pages/index.js" ></script>
   </body>
 </html>
