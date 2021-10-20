@@ -6,6 +6,7 @@ export default class PopupWithForm extends Popup{
     this._popupSelector = popupSelector;
     this._handleSubmit = handleSubmit;
     this._disableSubmitButton = disableSubmitButton;
+    this._popupForm = this._popupSelector.querySelector('.popup__form');
   }
 
   _getInputValues(){
@@ -20,6 +21,7 @@ export default class PopupWithForm extends Popup{
   }
 
   close(){
+    this._popupForm.reset();
     this._disableSubmitButton();
     super.close();
   }

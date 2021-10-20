@@ -52,36 +52,32 @@ const popupWithFormProfile = new PopupWithForm(
 
               popupWithFormProfile.close();
             },
-  () => {frmProfileValidaton._disableSubmitButton()}
+  () => {frmProfileValidaton.disableSubmitButton()}
 );
 popupWithFormProfile.setEventListeners();
 
 function openPopupWithFormProfile() {
   popupWithFormProfile.open();
   //info from Html
-  popupProfileName.value = userInfo.getUserInfo().name;
-  popupProfileAbout.value = userInfo.getUserInfo().about;
+  const info = userInfo.getUserInfo();
+  popupProfileName.value = info.name;
+  popupProfileAbout.value = info.about;
 }
 
 //popup new card
 const popupNewCard = document.getElementById('#popupNewCard');
-const popupNewCardCaption = document.getElementById('caption');
-const popupNewCardLink = document.getElementById('link');
 
 const popupWithFormNewCard = new PopupWithForm(
   popupNewCard,
   (data) => { cardsList.renderNewItem({link:data.link, name:data.caption});//{link:cardItem.link, about:cardItem.name}
               popupWithFormNewCard.close();
             },
-  () => {frmNewCardValidaton._disableSubmitButton()}
+  () => {frmNewCardValidaton.disableSubmitButton()}
 );
 popupWithFormNewCard.setEventListeners();
 
 function openPopupWithFormNewCard() {
   popupWithFormNewCard.open();
-  //info from Html
-  popupNewCardCaption.value = '';
-  popupNewCardLink.value = '';
 }
 
 //Buttons
