@@ -1,4 +1,4 @@
-import './index.css';
+//import './index.css';
 
 import Card from "../components/Сard.js";
 import FormValidator from "../components/FormValidator.js";
@@ -87,3 +87,24 @@ const btnAddElement = document.querySelector('.profile__add-button');
 //Button Event Listeners
 btnEditProfile.addEventListener('click', openPopupWithFormProfile);
 btnAddElement.addEventListener('click', openPopupWithFormNewCard);
+
+
+fetch('https://mesto.nomoreparties.co/v1/cohort-29/users/me', {
+  headers: {
+    authorization: 'cfaf0977-e7ef-41b9-b3ff-5b31bcc8ae61'
+  }
+})
+  .then(res => res.json())
+  .then((result) => {
+    console.log(result);
+  });
+
+fetch('https://mesto.nomoreparties.co/v1/cohort-29/cards', {
+  headers: {
+    authorization: 'cfaf0977-e7ef-41b9-b3ff-5b31bcc8ae61'
+  }
+})
+  .then(res => res.json())
+  .then((result) => {
+    console.log(result);
+  });
