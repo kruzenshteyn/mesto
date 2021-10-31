@@ -1,0 +1,12 @@
+.profile__avatar-button{
+  position: absolute;
+  top: calc(60px - 13px);
+  right: calc(60px - 13px);
+  min-width: 26px;
+	min-height: 26px;
+  background-image: url('../../../images/edit_btn.svg');
+  background-color: transparent;
+	background-size: cover;
+  border: 0;
+  cursor: pointer;
+}

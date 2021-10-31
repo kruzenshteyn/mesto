@@ -14,8 +14,13 @@
       <!--main content-->
       <main class="content">
         <section class="profile root__profile">
-          <!--img class="profile__avatar" src="<%=require('./images/kusto.jpg')%>" alt="Аватар" /--->
-          <img class="profile__avatar" src="<'./../images/kusto.jpg" alt="Аватар" />
+          <div class="profile__avatar">
+            <!--img class="profile__avatar-pic" src="<%=require('./images/kusto.jpg')%>" alt="Аватар" /--->
+            <img class="profile__avatar-pic" src="<'./../images/kusto.jpg" alt="Аватар" />
+            <div class="profile__avatar-cover">
+              <button type="button" class=" profile__avatar-button"></button>
+            </div>
+          </div>
           <div class="profile__info">
             <h1 class="profile__name">Жак-Ив Кусто</h1>
             <button type="button" class="button profile__edit-button">
@@ -132,6 +137,52 @@
         <figcaption class="image-popup__caption"></figcaption>
       </figure>
     </div>
+    <!--popup confirm-->
+    <div class="popup" id="#popupConfirm">
+      <div class="popup__content">
+        <button
+          type="button"
+          class="button popup__close"
+        ></button>
+        <h3 class="popup__title">Вы уверены?</h3>
+        <form class="popup__form" name="formConfirm" id="#popupConfirmForm">
+          <button
+            type="submit"
+            class="button popup__button"
+          >
+            Да
+          </button>
+        </form>
+      </div>
+    </div>
+    <!--popup Update Avatar-->
+    <div class="popup" id="#popupUpdateAvatar">
+      <div class="popup__content">
+        <button
+          type="button"
+          class="button popup__close"
+        ></button>
+        <h3 class="popup__title" id="#popupUpdateAvatarTitle">Обновить аватар</h3>
+        <form class="popup__form" name="formUpdateAvatar" id="#popupUpdateAvatarForm">
+          <input
+            type="url"
+            class="popup__input"
+            id="link"
+            placeholder="Ссылка на картинку"
+            name="link"
+            required
+          />
+          <span class="popup__error" id="link-error"></span>
+          <button
+            type="submit"
+            id="#popupUpdateAvatarSubmit"
+            class="button popup__button"
+          >
+            Сохранить
+          </button>
+        </form>
+      </div>
+    </div>
     <!--card-->
     <template id="#element">
       <figure class="element">
@@ -139,7 +190,10 @@
         <img class="element__image" src="#" alt="#" id="#element__image" />
         <figcaption class="element__caption">
           <h2 class="element__title"></h2>
-          <button type="button" class="element__like"></button>
+          <div class="element__like-block">
+            <button type="button" class="element__like"></button>
+            <p class="element__like-counter"></p>
+          </div>
         </figcaption>
       </figure>
     </template>
