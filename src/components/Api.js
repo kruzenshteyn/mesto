@@ -70,8 +70,50 @@ export default class Api{
     });
   }
 
+  postCard(name, link) {
+    //console.log(`name:${name}\nlink:${link}`)
+    return fetch(this._cards, {
+      method: 'POST',
+      headers: this._headers,
+      body: JSON.stringify({
+        name:name,
+        link: link
+      })
+    })
+    .then(res => {
+      if (res.ok) {
+        return res.json();
+      }
+      // если ошибка, отклоняем промис
+      return Promise.reject(`Ошибка: ${res.status}`);
+    });
+  }
 
+  deleteCard(_id) {
+    return fetch(`${this._cards}/${_id}`, {
+      method: 'DELETE',
+      headers: this._headers,
+    })
+    .then(res => {
+      if (res.ok) {
+        return res.json();
+      }
+      // если ошибка, отклоняем промис
+      return Promise.reject(`Ошибка: ${res.status}`);
+    });
+  }
 
-
-
+  putLike(_id, method) {
+    return fetch(`${this._likes}/${_id}`, {
+            method: method,
+            headers: this._headers
+        })
+        .then(res => {
+          if (res.ok) {
+            return res.json();
+          }
+          // если ошибка, отклоняем промис
+          return Promise.reject(`Ошибка: ${res.status}`);
+        });
+  }
 }

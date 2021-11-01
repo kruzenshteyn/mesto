@@ -43,6 +43,7 @@
 @import url(../blocks/element/__like/_checked/element__like_checked.css);
 @import url(../blocks/element/__caption/element__caption.css);
 @import url(../blocks/element/__remove/element__remove.css);
+@import url(../blocks/element/__remove/_hidden/element__remove_hidden.css);
 
 /*footer*/
 @import url(../blocks/footer/footer.css);

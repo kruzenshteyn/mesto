@@ -1,17 +1,17 @@
-//import './index.css';
+import './index.css';
 
 import Card from "../components/Сard.js";
 import FormValidator from "../components/FormValidator.js";
-import initialCards from "../utils/initialCards.js"
 import Section from "../components/Section.js";
 import PopupWithImage from "../components/PopupWithImage.js";
 import UserInfo from "../components/UserInfo.js";
 import PopupWithForm from "../components/PopupWithForm.js";
-import {imagePopupSelectorimage, imagePopupSelectorCaption, popupProfileForm, popupNewCardForm, popupUpdateAvatarForm}
+import {imagePopupSelectorimage, imagePopupSelectorCaption, popupProfileForm, popupNewCardForm, popupUpdateAvatarForm, popupConfirmForm}
         from "../utils/constants.js";
 import {enableValidationFields} from "../utils/validationFields.js";
 
 import Api from "../components/Api.js";
+import PopupWithConfirm from "../components/PopupWithConfirm.js";
 
 //Image Popup
 const imagePopup = document.querySelector('.image-popup');
@@ -20,9 +20,9 @@ popupWithImage.setEventListeners();
 
 
 const api = new Api({
-  cards: 'https://mesto.nomoreparties.co/v1/cohort-29/cards',
-  avatar: 'https://mesto.nomoreparties.co/v1/cohort-29/users/me/avatar',
   profile: 'https://mesto.nomoreparties.co/v1/cohort-29/users/me',
+  avatar: 'https://mesto.nomoreparties.co/v1/cohort-29/users/me/avatar',
+  cards: 'https://mesto.nomoreparties.co/v1/cohort-29/cards',
   likes: 'https://mesto.nomoreparties.co/v1/cohort-29/cards/likes',
   headers: {
       authorization: 'cfaf0977-e7ef-41b9-b3ff-5b31bcc8ae61',
@@ -30,29 +30,39 @@ const api = new Api({
   }
 });
 
+const popupConfirm = document.getElementById('#popupConfirm');
+const popupWithConfirm = new PopupWithConfirm(popupConfirm, api);
+popupWithConfirm.setEventListeners()
 
-const loadCard  = api.getInitialCards()
-        .then((result) => {
-          // обрабатываем результат
-          console.log(result);
-        })
-        .catch((err) => {
-          console.log(err); // выведем ошибку в консоль
-        });
 
-//Cards List
+  //Cards List
 const cardsList = new Section(
   {
-    data:initialCards,
     renderer:(cardItem)=>{
-      const card = new Card({link:cardItem.link, about:cardItem.name}, '#element', (link, about)=>{popupWithImage.open(link, about)});
-      const cardElement = card.createCard();
+      const card = new Card(
+        '#element',
+        (link, about)=>{popupWithImage.open(link, about)},
+        (event)=>{
+          event.preventDefault();
+          const card = event.target.closest('.element');
+          popupWithConfirm.open(card);
+        },
+        api);
+      const cardElement = card.createCard(cardItem);
       cardsList.addItem(cardElement);
     }
   },
   '.elements'
 )
-cardsList.renderItems();
+
+const initialCards  = api.getInitialCards()
+        .then((cards) => {
+          // обрабатываем результат
+          cardsList.renderItems(cards);
+        })
+        .catch((err) => {
+          console.log(err); // выведем ошибку в консоль
+        });
 
 //profile page fields
 const textProfileName = document.querySelector('.profile__name');
@@ -60,7 +70,7 @@ const textProfileAbout = document.querySelector('.profile__about');
 const avatarImage = document.querySelector('.profile__avatar-pic')
 const userInfo = new UserInfo({name:textProfileName, about:textProfileAbout, avatar:avatarImage});
 
-
+//LoadProfile
 const profile = api.getProfile()
         .then((result) => {
           userInfo.setUserInfo(result);
@@ -98,7 +108,6 @@ const popupWithFormProfile = new PopupWithForm(
                 popupWithFormProfile.close();
                 popupProfile.querySelector('.popup__button').textContent = 'Сохранить';
               })
-
             },
   () => {frmProfileValidaton.disableSubmitButton()}
 );
@@ -117,7 +126,11 @@ const popupNewCard = document.getElementById('#popupNewCard');
 
 const popupWithFormNewCard = new PopupWithForm(
   popupNewCard,
-  (data) => { cardsList.renderNewItem({link:data.link, name:data.caption});//{link:cardItem.link, about:cardItem.name}
+  (data) => { api.postCard(data.caption, data.link)
+              .then(res =>{
+                cardsList.renderNewItem(res);
+              })
+              .catch(err => {console.log(err)});
               popupWithFormNewCard.close();
             },
   () => {frmNewCardValidaton.disableSubmitButton()}
