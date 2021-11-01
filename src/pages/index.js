@@ -143,8 +143,7 @@ function openPopupWithFormNewCard() {
 
 //popup edit avatar #popupUpdateAvatar
 const popupUpdateAvatar = document.getElementById('#popupUpdateAvatar');
-//https://pictures.s3.yandex.net/frontend-developer/common/ava.jpg
-//http://127.0.0.1:5500/src/images/kusto.jpg
+//https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSgFHJGeoCUPKhbNS1XVLncOF_DPe3Ok5vGgQ&usqp=CAU
 const popupWithFormUpdateAvatar = new PopupWithForm(
   popupUpdateAvatar,
   (data) => {
