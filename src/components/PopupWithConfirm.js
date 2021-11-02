@@ -3,7 +3,6 @@ import Popup from "./Popup.js";
 export default class PopupWithConfirm extends Popup{
   constructor(popupSelector, api){
     super(popupSelector);
-    this._popupSelector = popupSelector;
     this._api = api;
   }
 
@@ -18,21 +17,17 @@ export default class PopupWithConfirm extends Popup{
           .then(res => {
             if (res) {
               this._element.remove(this._element);
+              this.close();
             }
           })
           .catch((err) => {
             console.log(err); // выведем ошибку в консоль
           })
-          .finally(
-            ()=>{
-              this.close()
-            }
-          )
   }
 
   setEventListeners(){
     super.setEventListeners();
-    this._popupSelector.addEventListener('submit', (el) => {this._handleSubmit(el)});
+    this._popup.addEventListener('submit', (el) => {this._handleSubmit(el)});
   }
 
 

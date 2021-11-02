@@ -1,10 +1,12 @@
 export default class Card{
 
-  constructor(cardSelector, handleCardClick, handleRemoveCardClick, api){
+  constructor(cardSelector, data, userId, handleCardClick, handleRemoveCardClick, api){
     this.cardSelector = cardSelector;
     this.handleCardClick = handleCardClick;
     this._handleRemoveCardClick = handleRemoveCardClick;
     this._api = api;
+    this._userId = userId;
+    this._data = data;
   }
 
   _getTemplate(){
@@ -20,41 +22,46 @@ export default class Card{
     target.querySelector('.element__like-counter').textContent = scount;
   }
 
-  createCard(data) {
+  createCard() {
     this._element = this._getTemplate();
     //Image
     const image = this._element.querySelector('.element__image');
     //Values
-    image.setAttribute('src', data.link);
-    image.setAttribute('alt', `Изображение ${data.name}`);
-    this._element.setAttribute("id", data._id);
+    image.setAttribute('src', this._data.link);
+    image.setAttribute('alt', `Изображение ${this._data.name}`);
+    this._element.setAttribute("id", this._data._id);
     //caption
-    this._element.querySelector('.element__title').textContent = data.name;
+    this._element.querySelector('.element__title').textContent = this._data.name;
 
     //Likes count
-    this._changeLikeCount(this._element, data.likes.length);
+    this._changeLikeCount(this._element, this._data.likes.length);
+
+    const hasLike = this._data.likes.map((item)=>{
+      return item._id == this._userId;
+    }).includes(true);
+    if(hasLike){
+      this._element.querySelector('.element__like').classList.toggle('element__like_checked');
+    }
 
     //Remove item
-    if (data.owner.name !== document.querySelector('.profile__name').textContent) {
+    if (this._data.owner._id !== this._userId) {
       this._element.querySelector('.element__remove')
           .classList.add('element__remove_hidden');
     }
 
-    this._setEventListeners(data, this._api);
+    this._setEventListeners(this._data, this._api);
     return this._element;
   }
 
 
   _handleLikeChecking(event, api) {
-
-    event.target.classList.toggle('element__like_checked');
-
     const element = event.target.closest('.element');
 
-    if(event.target.classList.contains('element__like_checked')){
+    if(!event.target.classList.contains('element__like_checked')){
       api.putLike(element.id, 'PUT')
                 .then(res => {
                   this._changeLikeCount(element, res.likes.length);
+                  this._toggleLike(event);
                 })
                 .catch(res => { console.log(res) })
     }
@@ -62,11 +69,14 @@ export default class Card{
       api.putLike(element.id, 'DELETE')
                 .then(res => {
                   this._changeLikeCount(element, res.likes.length);
+                  this._toggleLike(event);
                 })
                 .catch(res => { console.log(res) })
     }
+  }
 
-
+  _toggleLike(event) {
+    event.target.classList.toggle('element__like_checked');
   }
 
   _setEventListeners(data, api) {
