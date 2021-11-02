@@ -41,7 +41,7 @@ const cardsList = new Section({
       const card = new Card(
         '#element',
         cardItem,
-        userInfo._id,
+        userInfo.getId(),
         (link, about)=>{popupWithImage.open(link, about)},
         (event)=>{
           event.preventDefault();
@@ -56,6 +56,7 @@ const cardsList = new Section({
   '.elements'
 )
 
+//Load initial data from server
 const profile = api.getProfile();
 const initialCards  = api.getInitialCards();
 Promise.all([profile, initialCards])
