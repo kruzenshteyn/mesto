@@ -108,12 +108,17 @@ function openPopupWithFormProfile() {
 //popup new card
 const popupWithFormNewCard = new PopupWithForm(
   '#popupNewCard',
-  (data) => { api.postCard(data.caption, data.link)
+  (data, popup) => {
+              popup.querySelector('.popup__button').textContent = 'Создание...';
+              api.postCard(data.caption, data.link)
               .then(res =>{
                 cardsList.renderNewItem(res);
                 popupWithFormNewCard.close();
               })
-              .catch(err => {console.log(err)});
+              .catch(err => {console.log(err)})
+              .finally(()=>{
+                popup.querySelector('.popup__button').textContent = 'Создать';
+              });
             },
   () => {frmNewCardValidaton.disableSubmitButton()}
 );
